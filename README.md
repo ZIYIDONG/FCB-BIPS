@@ -1,1 +1,5 @@
-# Code of Paper.IoT-46648-2025
+# Code of FCB-BIPS
+
+This is the repository of FCB-BIPS.
+
+Contact Ziyi Dong: ziyidong@foxmail.com
