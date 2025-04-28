@@ -1,0 +1,32 @@
+﻿cl : 命令行  warning D9035: “Gm”选项已否决，并将在将来的版本中移除
+  pemain.cpp
+C:\Users\ZiyiDong\Desktop\codesss\ecn.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“pemain.cpp”)
+  
+C:\Users\ZiyiDong\Desktop\codesss\zzn2.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“pemain.cpp”)
+  
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(608,19): warning C4244: “=”: 从“clock_t”转换到“float”，可能丢失数据
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(620,24): warning C4244: “=”: 从“clock_t”转换到“float”，可能丢失数据
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(635,19): warning C4244: “=”: 从“clock_t”转换到“float”，可能丢失数据
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(655,25): warning C4244: “=”: 从“clock_t”转换到“float”，可能丢失数据
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(682,19): warning C4244: “=”: 从“clock_t”转换到“float”，可能丢失数据
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(694,19): warning C4244: “=”: 从“clock_t”转换到“float”，可能丢失数据
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(715,19): warning C4244: “=”: 从“clock_t”转换到“float”，可能丢失数据
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(730,20): warning C4244: “=”: 从“clock_t”转换到“float”，可能丢失数据
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(740,19): warning C4244: “=”: 从“clock_t”转换到“float”，可能丢失数据
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(752,20): warning C4244: “=”: 从“clock_t”转换到“float”，可能丢失数据
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(764,20): warning C4244: “=”: 从“clock_t”转换到“float”，可能丢失数据
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(784,25): warning C4244: “=”: 从“clock_t”转换到“float”，可能丢失数据
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(811,23): warning C4244: “=”: 从“clock_t”转换到“float”，可能丢失数据
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(829,19): warning C4244: “=”: 从“clock_t”转换到“float”，可能丢失数据
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(847,22): warning C4244: “=”: 从“clock_t”转换到“float”，可能丢失数据
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(856,19): warning C4244: “=”: 从“clock_t”转换到“float”，可能丢失数据
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(864,22): warning C4244: “=”: 从“clock_t”转换到“float”，可能丢失数据
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(872,19): warning C4244: “=”: 从“clock_t”转换到“float”，可能丢失数据
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(881,20): warning C4244: “=”: 从“clock_t”转换到“float”，可能丢失数据
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(465,21): warning C4101: “y2”: 未引用的局部变量
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(465,13): warning C4101: “y1”: 未引用的局部变量
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(465,9): warning C4101: “x1”: 未引用的局部变量
+C:\Users\ZiyiDong\Desktop\codesss\pemain.cpp(465,17): warning C4101: “x2”: 未引用的局部变量
+  pe1.vcxproj -> C:\Users\ZiyiDong\Desktop\codesss\Debug\pe1.exe
