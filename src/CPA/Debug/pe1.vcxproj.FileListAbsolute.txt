@@ -5,5 +5,3 @@ C:\Users\ZiyiDong\Desktop\codeadd\Debug\pe1.exe
 C:\Users\Ziyi_Dong\Desktop\codeadd\Debug\pe1.exe
 C:\Users\ZiyiDong\Desktop\code_add_enc_sign\Debug\pe1.exe
 F:\code_add_enc_sign\Debug\pe1.exe
-C:\Users\ZiyiDong\Desktop\PRE\code_add_enc_sign\code_add_enc_sign\Debug\pe1.exe
-C:\Users\ZiyiDong\Documents\GitHub\FCB-BIPS\src\CPA\Debug\pe1.exe
