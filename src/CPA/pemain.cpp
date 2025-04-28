@@ -294,30 +294,51 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		h %= p;
 		return h;
 	}
+	
+	// the public params of ts
+	typedef struct params_ts
+	{
+		ECn g, h;
+		ZZn2 e_g_g,e_g_h;
+		ECn ts_pub;
+	}params_ts;
 
-	// PKISI私钥
-	typedef struct  PKISI_MSK {
+	// the public params of pkisi
+	typedef struct params_pkisi
+	{
+		ECn g;
+		ZZn2 e;
+		PKISI_MPK MPK;
+	}params_pkisi;
+
+
+	// the private key of PKISI  \\ 只有一个元素，没必要设置结构体
+	/*typedef struct  PKISI_MSK {
 		Big alpha;
-	}PKISI_MSK;
-	//公钥
+	}PKISI_MSK;*/
+	
+	// the public key of PKISI
 	typedef struct PKISI_MPK {
 		ECn g, h, g1;
 	}PKISI_MPK;
 
-	//时间服务器私钥
-	typedef struct TRS_MSK {
-		Big s;
-	}TRS_MSK;
-	//公钥
-	typedef struct TRS_MPK {
-		ECn g1;
-	}TRS_MPK;
+	////时间服务器私钥          \\ 只有一个元素，没必要设置结构体
+	//typedef struct TRS_MSK {
+	//	Big s;
+	//}TRS_MSK;
+
+	////公钥       \\ 只有一个元素，没必要设置结构体
+	//typedef struct TRS_MPK {
+	//	ECn g1;
+	//}TRS_MPK;
+
 	//用户私钥
 	typedef struct user_msk {
 		Big r;
 		ECn K;
 	}user_msk;
-	//密文
+
+	// 原始密文结构体
 	typedef struct Ciphtertext {
 		ECn c1;
 		ZZn2 c2;
@@ -326,27 +347,30 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		ZZn2 c5;
 	}Ciphtertext;
 
-	typedef struct Ciphtertext1 {
+	// 代理重加密密文结构体
+	typedef struct ReCiphtertext {
 		ECn c1;
 		ZZn2 c2;
 		ZZn2 c3;
 		ZZn2 c4;
 		ZZn2 c5;
-	}Ciphtertext1;
+	}ReCiphtertext;
 
 
-	//Enc公开参数
-	typedef struct params {
-		ZZn2 e_g_g;
-		ZZn2 e_g_h;
-	}Params;
+	////Enc公开参数
+	//typedef struct params {
+	//	ZZn2 e_g_g;
+	//	ZZn2 e_g_h;
+	//}Params;
 
-	typedef struct RR {
+	typedef struct RK_user {
 		ECn u;
 		ZZn2 v;
 		ZZn2 w;
-	}RR;
+	}RK_user;
 
+
+	//时间陷门结构体
 	typedef struct St {
 		Big rt;
 		ECn Kt;
@@ -355,8 +379,8 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 	//PKISI计算用户私钥
 	void  KeyGen(ECn h, ECn g, Big alpha, Big& r, Big q, ECn& K, Big upk) {
 		r = rand(q);
-		r = inverse(1, r);
-		K = r * g;
+		// r = inverse(1, r); 修改：删除
+		K = (-r) * g;
 		K = K + h;
 		Big y = alpha - upk;
 		y = inverse(1, y);
@@ -374,7 +398,7 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		c.c5 = ming * pow(params.e_g_h,-k1) *pow(params.e_g_h, -k2);
 	}
 	/*---------------------------------------- ReEnc----------------------------------------------------------------*/
-	void  ReEnc(Ciphtertext c, Big q, ZZn2 cube, ECn rk, Ciphtertext1& c1) {
+	void  ReEnc(Ciphtertext c, Big q, ZZn2 cube, ECn rk, ReCiphtertext& c1) {
 		c1.c1 = c.c1;
 		c1.c2 = c.c2;
 		ecap(c.c3, rk, q, cube, c1.c3);
@@ -422,7 +446,7 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		X = Y * pow(rr.v, user_msk.r) * rr.w;
 	}
 
-	void Dec2(St st, ZZn2 X, Ciphtertext1 c1, Big q, ZZn2 cube, ZZn2& ming1) {
+	void Dec2(St st, ZZn2 X, ReCiphtertext c1, Big q, ZZn2 cube, ZZn2& ming1) {
 		ZZn2 Y;
 		ecap(c1.c1, st.Kt, q, cube, Y);
 		ming1 = Y * pow(c1.c2, st.rt) * c1.c3 * c1.c4 * c1.c5;
@@ -439,14 +463,24 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 	}
 
 	
-	int main() {
+	int main() {            
+
+		// 修改：缺少大量椭圆曲线操作中间参数
+		ECn P, Q, R; //椭圆曲线上的点
+		ZZn2 g0, Qx, Qy, gid, gid1, cube, w;//自加     //gid:双线性对结果，gid1:双线性对结果，cube:立方根，w:幂运算结果 Qx,Qy:椭圆曲线上的点Q的坐标
+		Big px, py, qx, qy, ab, r1;//自加         //px,py:椭圆曲线上的点P的坐标，qx,qy:椭圆曲线上的点Q的坐标，ab:椭圆曲线上的点Qid的坐标，r1:哈希值
+		big x1, y1, x2, y2;                          //x1,y1:椭圆曲线上的点的坐标，x2,y2:椭圆曲线上的点的坐标
+		Big a, b, c, d1, d2, p, q, t, n, cof, x, y;  //a:私钥，b:私钥，c:私钥，d1:私钥，d2:私钥，p:素数p，q:素数q，t:素数阶，n:随机数，cof:系数，x:椭圆曲线上的点的坐标，y:椭圆曲线上的点的坐标
+		char pad[HASH_LEN1];//自加                   //pad:哈希值
+
+		//
 		long seed;                                   //seed:随机数种子
-		Big p;//p:素数
-		PKISI_MSK pkisi_msk;
-		PKISI_MPK pkisi_mpk;
-		Big cof, n, a, t;//系数，n:随机数
-		TRS_MSK trs_msk;
-		TRS_MPK trs_mpk;
+		//Big p;//p:素数
+		Big pkisi_msk;
+		//PKISI_MPK pkisi_mpk;   主公钥是公开参数的一部分，故进行合并
+		//Big cof, n, a, t;//系数，n:随机数
+		Big ts_msk;
+		//TRS_MPK trs_mpk;
 		char Alice[100] = "Alice@email.com";//发送者
 		char Bob[100] = "Bob@@email.com";
 		char Tom[100] = "Tom@qq.com";
@@ -455,19 +489,19 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		char TimeNow[9] = "20241212";
 		Big QtTimeToBeDec, QtTimeNow;
 		Ciphtertext c1;
-		Ciphtertext1 c21;
+		// ReCiphtertext c21; 修改：删除此行
 		Big upk1, upk2, upk3, upk4;//用户公钥
-		Big q;//素数取模
+		//Big q;//素数取模
 		user_msk user_msk1, user_msk2, user_msk3, user_msk4;
 		ZZn2 mi;
-		ZZn2 cube;//立方根
-		Params params;
-		RR rr2,rr3,rr4;//Rj
-		ECn rk;
-		ZZn2 ming ;
-		ZZn2 ming11,ming21,ming31,ming41;
+		//ZZn2 cube;//立方根
+		params_ts params_ts;
+		RK_user RK_bob, RK_tom, RK_andy;   //Rj
+		ECn RK;
+		ZZn2 PT;   // Plaintext to be encrypted
+		ZZn2 PT_bob, PT_tom, PT_andy;
 		St st;
-		ZZn2 x2, x3, x4;
+		ZZn2 X_Bob, X_Tom, X_Andy;    // 解密所用中间参数 X
 		miracl* mip = &precision;                    //miracl* mip:精度
 
 		cout << "由于有些基本操作耗时不足1毫秒，所有基本操作都将重复执行" << renum << "次 " << endl;
@@ -507,11 +541,45 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 			cout << "sanity check failed" << endl;
 			exit(0);
 		}
+		/*--------------------------------------------------------------产生素数p 结束-------------------------------------------------------------------------*/
+		
 
-		//cout << "p=" << p << endl;
-		//TR初始化
-		trs_msk.s = rand(q);
-		trs_mpk.g1 = trs_msk.s * pkisi_mpk.g;
+	    /*--------------------------------------------------------------初始化时间服务器公开参数，私钥-------------------------------------------------------------------------*/
+
+		// 生成时间服务器公开参数中第一个生成元g
+		forever
+		{
+			while (!params_ts.g.set(randn()));
+		params_ts.g *= cof;
+			if (!params_ts.g.iszero()) break;
+		}
+
+		// 生成时间服务器公开参数中第二个生成元h
+		forever
+		{
+			while (!params_ts.h.set(randn()));
+		params_ts.h *= cof;
+			if (!params_ts.h.iszero()) break;
+		}
+		//产生椭圆曲线上双线性映射 e(g,g) 和 e(g,h)
+		ecap(params_ts.g, params_ts.g, q, cube, params_ts.e_g_g);
+		if (ecap(params_ts.g, params_ts.g, q, cube, params_ts.e_g_g)) {
+			cout << "ecap:e_g_g success" << endl;
+		}
+		else {
+			cout << "ecap:e_g_g error" << endl;
+		}
+		ecap(params_ts.g, params_ts.h, q, cube, params_ts.e_g_h);
+		if (ecap(params_ts.g, params_ts.g, q, cube, params_ts.e_g_h)) {
+			cout << "ecap:e_g_h success" << endl;
+		}
+		else {
+			cout << "ecap:e_g_h error" << endl;
+		}
+
+		// 时间服务器私钥生成，
+		ts_msk = rand(q);
+		params_ts.ts_pub = ts_msk * params_ts.g;
 
 		/*----------------------------------------产生明文----------------------------------------------------*/
 		ming = randn2();

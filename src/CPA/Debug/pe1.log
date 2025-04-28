@@ -1,15 +1,4 @@
 ﻿cl : 命令行  warning D9035: “Gm”选项已否决，并将在将来的版本中移除
-  zzn2.cpp
-C:\Users\ZiyiDong\Documents\GitHub\FCB-BIPS\src\CPA\zzn2.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\ZiyiDong\Documents\GitHub\FCB-BIPS\src\CPA\zzn2.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  (编译源文件“zzn2.cpp”)
-  
-  zzn.cpp
-  ecn.cpp
-C:\Users\ZiyiDong\Documents\GitHub\FCB-BIPS\src\CPA\ecn.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  (编译源文件“ecn.cpp”)
-  
-  big.cpp
   pemain.cpp
 C:\Users\ZiyiDong\Documents\GitHub\FCB-BIPS\src\CPA\ecn.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   (编译源文件“pemain.cpp”)
@@ -17,5 +6,4 @@ C:\Users\ZiyiDong\Documents\GitHub\FCB-BIPS\src\CPA\ecn.h(1,1): warning C4819: �
 C:\Users\ZiyiDong\Documents\GitHub\FCB-BIPS\src\CPA\zzn2.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   (编译源文件“pemain.cpp”)
   
-  正在生成代码...
-  pe1.vcxproj -> C:\Users\ZiyiDong\Documents\GitHub\FCB-BIPS\src\CPA\Debug\pe1.exe
+C:\Users\ZiyiDong\Documents\GitHub\FCB-BIPS\src\CPA\pemain.cpp(485,8): error C2040: “x2”:“ZZn2”与“big”的间接寻址级别不同
