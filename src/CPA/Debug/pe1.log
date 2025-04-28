@@ -1,9 +1,169 @@
 ﻿cl : 命令行  warning D9035: “Gm”选项已否决，并将在将来的版本中移除
+  zzn2.cpp
+E:\论文实验\FCB-BIPS\src\CPA\zzn2.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+E:\论文实验\FCB-BIPS\src\CPA\zzn2.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“zzn2.cpp”)
+  
+  zzn.cpp
+  ecn.cpp
+E:\论文实验\FCB-BIPS\src\CPA\ecn.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“ecn.cpp”)
+  
+  big.cpp
   pemain.cpp
-C:\Users\ZiyiDong\Documents\GitHub\FCB-BIPS\src\CPA\ecn.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+E:\论文实验\FCB-BIPS\src\CPA\ecn.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   (编译源文件“pemain.cpp”)
   
-C:\Users\ZiyiDong\Documents\GitHub\FCB-BIPS\src\CPA\zzn2.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+E:\论文实验\FCB-BIPS\src\CPA\zzn2.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   (编译源文件“pemain.cpp”)
   
-C:\Users\ZiyiDong\Documents\GitHub\FCB-BIPS\src\CPA\pemain.cpp(485,8): error C2040: “x2”:“ZZn2”与“big”的间接寻址级别不同
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(311,13): error C3646: “MPK”: 未知重写说明符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(311,3): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(390,75): error C2061: 语法错误: 标识符“Params”
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(393,3): error C2065: “c”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(395,3): error C2065: “c”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(395,14): error C2065: “params”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(396,3): error C2065: “c”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(397,3): error C2065: “c”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(397,14): error C2065: “params”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(398,3): error C2065: “c”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(398,10): error C2065: “ming”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(398,21): error C2065: “params”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(398,44): error C2065: “params”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(409,66): error C2061: 语法错误: 标识符“Params”
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(414,9): error C2065: “cof”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(419,17): error C2065: “q”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(421,8): error C2065: “c”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(421,17): error C2065: “q”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(421,20): error C2065: “cube”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(422,3): error C2065: “rr”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(423,3): error C2065: “rr”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(423,14): error C2065: “params”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(424,3): error C2065: “rr”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(424,18): error C2065: “params”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(427,60): error C2061: 语法错误: 标识符“TRS_MPK”
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(428,3): error C2065: “st”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(429,11): error C2065: “trs_msk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(431,3): error C2065: “st”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(431,29): error C2065: “st”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(432,3): error C2065: “st”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(432,13): error C2065: “st”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(433,10): error C2065: “trs_msk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(434,4): error C2065: “trs_msk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(435,4): error C2065: “trs_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(435,17): error C2065: “trs_msk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(436,12): error C2065: “trs_msk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(438,4): error C2065: “st”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(438,30): error C2065: “st”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(439,4): error C2065: “st”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(439,16): error C2065: “st”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(441,28): error C2065: “trs_msk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(443,12): error C2065: “RR”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(443,15): error C2146: 语法错误: 缺少“)”(在标识符“rr”的前面)
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(443,72): error C2143: 语法错误: 缺少“;”(在“{”的前面)
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(443,72): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(585,3): error C2065: “ming”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(586,35): error C2065: “ming”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(588,13): error C2039: "alpha": 不是 "Big" 的成员
+      E:\论文实验\FCB-BIPS\src\CPA\big.h(122,7):
+      参见“Big”的声明
+  
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(592,12): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(593,4): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(594,9): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(597,3): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(597,28): error C2039: "alpha": 不是 "Big" 的成员
+      E:\论文实验\FCB-BIPS\src\CPA\big.h(122,7):
+      参见“Big”的声明
+  
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(597,36): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(601,12): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(602,4): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(603,9): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(605,8): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(605,21): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(605,43): error C2065: “params”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(605,3): error C2660: “ecap”: 函数不接受 3 个参数
+      E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(222,7):
+      参见“ecap”的声明
+      E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(605,3):
+      尝试匹配参数列表“()”时
+  
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(606,12): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(606,25): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(606,47): error C2065: “params”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(606,7): error C2660: “ecap”: 函数不接受 3 个参数
+      E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(222,7):
+      参见“ecap”的声明
+      E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(606,7):
+      尝试匹配参数列表“()”时
+  
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(612,8): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(612,21): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(612,43): error C2065: “params”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(612,3): error C2660: “ecap”: 函数不接受 3 个参数
+      E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(222,7):
+      参见“ecap”的声明
+      E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(612,3):
+      尝试匹配参数列表“()”时
+  
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(613,12): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(613,25): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(613,47): error C2065: “params”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(613,7): error C2660: “ecap”: 函数不接受 3 个参数
+      E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(222,7):
+      参见“ecap”的声明
+      E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(613,7):
+      尝试匹配参数列表“()”时
+  
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(626,20): error C2039: "alpha": 不是 "Big" 的成员
+      E:\论文实验\FCB-BIPS\src\CPA\big.h(122,7):
+      参见“Big”的声明
+  
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(626,46): error C2039: "alpha": 不是 "Big" 的成员
+      E:\论文实验\FCB-BIPS\src\CPA\big.h(122,7):
+      参见“Big”的声明
+  
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(626,72): error C2039: "alpha": 不是 "Big" 的成员
+      E:\论文实验\FCB-BIPS\src\CPA\big.h(122,7):
+      参见“Big”的声明
+  
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(626,98): error C2039: "alpha": 不是 "Big" 的成员
+      E:\论文实验\FCB-BIPS\src\CPA\big.h(122,7):
+      参见“Big”的声明
+  
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(627,14): error C2039: "alpha": 不是 "Big" 的成员
+      E:\论文实验\FCB-BIPS\src\CPA\big.h(122,7):
+      参见“Big”的声明
+  
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(628,4): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(628,29): error C2039: "alpha": 不是 "Big" 的成员
+      E:\论文实验\FCB-BIPS\src\CPA\big.h(122,7):
+      参见“Big”的声明
+  
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(628,37): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(630,44): error C2039: "alpha": 不是 "Big" 的成员
+      E:\论文实验\FCB-BIPS\src\CPA\big.h(122,7):
+      参见“Big”的声明
+  
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(640,10): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(640,23): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(640,46): error C2039: "alpha": 不是 "Big" 的成员
+      E:\论文实验\FCB-BIPS\src\CPA\big.h(122,7):
+      参见“Big”的声明
+  
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(640,3): error C2660: “KeyGen”: 函数不接受 5 个参数
+      E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(380,8):
+      参见“KeyGen”的声明
+      E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(640,3):
+      尝试匹配参数列表“()”时
+  
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(655,7): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(655,53): error C2065: “params”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(655,61): error C2065: “ming”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(656,9): error C2065: “pkisi_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(656,34): error C2065: “trs_mpk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(656,43): error C2065: “trs_msk”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(657,35): error C2065: “ming11”: 未声明的标识符
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(658,44): error C2065: “ming11”: 未声明的标识符
+  正在生成代码...

@@ -1,33 +1,33 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\",
+  "WorkspaceRootPath": "E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\pemain.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\pemain.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|solutionrelative:pemain.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\zzn2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\zzn2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|solutionrelative:zzn2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\big.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\big.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|solutionrelative:big.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\zzn2.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\zzn2.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|solutionrelative:zzn2.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\big.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\big.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|solutionrelative:big.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\zzn.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\zzn.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|solutionrelative:zzn.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\ecn.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\ecn.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|solutionrelative:ecn.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -38,17 +38,21 @@
       "DocumentGroups": [
         {
           "DockedHeight": 645,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "pemain.cpp",
-              "DocumentMoniker": "C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\pemain.cpp",
+              "DocumentMoniker": "E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\pemain.cpp",
               "RelativeDocumentMoniker": "pemain.cpp",
-              "ToolTip": "C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\pemain.cpp",
+              "ToolTip": "E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\pemain.cpp",
               "RelativeToolTip": "pemain.cpp",
-              "ViewState": "AgIAAO4BAAAAAAAAAAApwPQBAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAIMBAAAAAAAAAAAUwOwBAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-07-18T13:37:35.392Z",
               "EditorCaption": ""
@@ -57,9 +61,9 @@
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "big.h",
-              "DocumentMoniker": "C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\big.h",
+              "DocumentMoniker": "E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\big.h",
               "RelativeDocumentMoniker": "big.h",
-              "ToolTip": "C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\big.h",
+              "ToolTip": "E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\big.h",
               "RelativeToolTip": "big.h",
               "ViewState": "AgIAAOIBAAAAAAAAAAASwPYBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
@@ -69,9 +73,9 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "big.cpp",
-              "DocumentMoniker": "C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\big.cpp",
+              "DocumentMoniker": "E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\big.cpp",
               "RelativeDocumentMoniker": "big.cpp",
-              "ToolTip": "C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\big.cpp",
+              "ToolTip": "E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\big.cpp",
               "RelativeToolTip": "big.cpp",
               "ViewState": "AgIAAJ8AAAAAAAAAAAAswLMAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
@@ -81,9 +85,9 @@
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "ecn.cpp",
-              "DocumentMoniker": "C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\ecn.cpp",
+              "DocumentMoniker": "E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\ecn.cpp",
               "RelativeDocumentMoniker": "ecn.cpp",
-              "ToolTip": "C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\ecn.cpp",
+              "ToolTip": "E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\ecn.cpp",
               "RelativeToolTip": "ecn.cpp",
               "ViewState": "AgIAAKoBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
@@ -93,9 +97,9 @@
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "zzn.cpp",
-              "DocumentMoniker": "C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\zzn.cpp",
+              "DocumentMoniker": "E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\zzn.cpp",
               "RelativeDocumentMoniker": "zzn.cpp",
-              "ToolTip": "C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\zzn.cpp",
+              "ToolTip": "E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\zzn.cpp",
               "RelativeToolTip": "zzn.cpp",
               "ViewState": "AgIAAI0AAAAAAAAAAAASwJ4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
@@ -105,9 +109,9 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "zzn2.h",
-              "DocumentMoniker": "C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\zzn2.h",
+              "DocumentMoniker": "E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\zzn2.h",
               "RelativeDocumentMoniker": "zzn2.h",
-              "ToolTip": "C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\zzn2.h",
+              "ToolTip": "E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\zzn2.h",
               "RelativeToolTip": "zzn2.h",
               "ViewState": "AgIAADwAAAAAAAAAAAASwEsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
@@ -117,13 +121,45 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "zzn2.cpp",
-              "DocumentMoniker": "C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\zzn2.cpp",
+              "DocumentMoniker": "E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\zzn2.cpp",
               "RelativeDocumentMoniker": "zzn2.cpp",
-              "ToolTip": "C:\\Users\\ZiyiDong\\Documents\\GitHub\\FCB-BIPS\\src\\CPA\\zzn2.cpp",
+              "ToolTip": "E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\zzn2.cpp",
               "RelativeToolTip": "zzn2.cpp",
               "ViewState": "AgIAAKMAAAAAAAAAAAAkwMQAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-08-28T15:51:42.126Z"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 172,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{68487888-204a-11d3-87eb-00c04f7971a5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 520,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             }
           ]
         }

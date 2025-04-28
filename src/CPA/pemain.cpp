@@ -464,7 +464,7 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 
 	
 	int main() {            
-
+		//123456789
 		// 修改：缺少大量椭圆曲线操作中间参数
 		ECn P, Q, R; //椭圆曲线上的点
 		ZZn2 g0, Qx, Qy, gid, gid1, cube, w;//自加     //gid:双线性对结果，gid1:双线性对结果，cube:立方根，w:幂运算结果 Qx,Qy:椭圆曲线上的点Q的坐标
