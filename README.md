@@ -2,5 +2,5 @@
 
 This is the repository of FCB-BIPS.
 
-Contact Ziyi Dong: ziyi.dong [at] foxmail.com
+Contact Ziyi Dong: dongziyics@163.com
 
