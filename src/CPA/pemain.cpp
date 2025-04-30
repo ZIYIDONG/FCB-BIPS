@@ -429,16 +429,16 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		rr.w = X * pow(params_ts.e_g_h, -k3);
 	}
 
-	void RTtrd(params_ts params_ts, Big q, Big QtTimeToBeDec,Big ts_msk, St& st) {
+	void RTtrd(params_ts params_ts, Big q, Big QtTimeNow,Big ts_msk, St& st) {
 		st.rt = rand(q);
-		Big y = ts_msk - QtTimeToBeDec;
+		Big y = ts_msk - QtTimeNow;
 		y = inverse(1, y);
 		st.Kt = (params_ts.h + ((-st.rt) * params_ts.g));
 		st.Kt = y*st.Kt;
-		while (ts_msk == QtTimeToBeDec) {
+		while (ts_msk == QtTimeNow) {
 			ts_msk = rand(q);
 			params_ts.ts_pub = ts_msk * params_ts.g;
-			Big y = ts_msk - QtTimeToBeDec;
+			y = ts_msk - QtTimeNow;
 			y = inverse(1, y);
 			st.Kt = (params_ts.h + ((-st.rt) * params_ts.g));
 			st.Kt = y * st.Kt;
@@ -566,19 +566,6 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 				params_ts.h *= cof;
 			if (!params_ts.h.iszero()) break;
 		}
-		//生成Pkisi生成元
-		forever
-		{
-			while (!params_pkisi.MPK.g.set(randn()));
-					params_pkisi.MPK.g *= cof;
-			if (!params_pkisi.MPK.g.iszero()) break;
-		}
-		forever
-		{
-			while (!params_pkisi.MPK.h.set(randn()));
-				params_pkisi.MPK.h *= cof;
-			if (!params_pkisi.MPK.h.iszero()) break;
-		}
 		//产生params_ts椭圆曲线上双线性映射 e(g,g) 和 e(g,h)
 		ecap(params_ts.g, params_ts.g, q, cube, params_ts.e_g_g);
 		if (ecap(params_ts.g, params_ts.g, q, cube, params_ts.e_g_g)) {
@@ -588,26 +575,11 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 			cout << "params_ts ecap:e_g_g error" << endl;
 		}
 		ecap(params_ts.g, params_ts.h, q, cube, params_ts.e_g_h);
-		if (ecap(params_ts.g, params_ts.g, q, cube, params_ts.e_g_h)) {
+		if (ecap(params_ts.g, params_ts.h, q, cube, params_ts.e_g_h)) {
 			cout << "params_ts ecap:e_g_h success" << endl;
 		}
 		else {
 			cout << "params_ts ecap:e_g_h error" << endl;
-		}
-		//产生params_pkisi椭圆曲线上双线性映射 e(g,g) 和 e(g,h)
-		ecap(params_pkisi.MPK.g, params_pkisi.MPK.g, q, cube, params_pkisi.e_g_g);
-		if (ecap(params_pkisi.MPK.g, params_pkisi.MPK.g, q, cube, params_pkisi.e_g_g)) {
-			cout << "params_pkisi ecap:e_g_g success" << endl;
-		}
-		else {
-			cout << "params_pkisi ecap:e_g_g error" << endl;
-		}
-		ecap(params_pkisi.MPK.g, params_pkisi.MPK.h, q, cube, params_pkisi.e_g_h);
-		if (ecap(params_pkisi.MPK.g, params_pkisi.MPK.h, q, cube, params_pkisi.e_g_h)) {
-			cout << "params_pkisi ecap:e_g_h success" << endl;
-		}
-		else {
-			cout << "params_pkisi ecap:e_g_h error" << endl;
 		}
 
 		// 时间服务器私钥生成，
@@ -635,19 +607,20 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 				params_pkisi.MPK.h *= cof;
 			if (!params_pkisi.MPK.h.iszero()) break;
 		}
-		ecap(params_pkisi.MPK.g, params_pkisi.MPK.g, q, cube, params_ts.e_g_g);
-		if (ecap(params_pkisi.MPK.g, params_pkisi.MPK.g, q, cube, params_ts.e_g_g)) {
-			cout << "ecap:e_g_g success" << endl;
+			//产生params_pkisi椭圆曲线上双线性映射 e(g,g) 和 e(g,h)
+		ecap(params_pkisi.MPK.g, params_pkisi.MPK.g, q, cube, params_pkisi.e_g_g);
+		if (ecap(params_pkisi.MPK.g, params_pkisi.MPK.g, q, cube, params_pkisi.e_g_g)) {
+			cout << "params_pkisi ecap:e_g_g success" << endl;
 		}
 		else {
-			cout << "ecap:e_g_g error" << endl;
+			cout << "params_pkisi ecap:e_g_g error" << endl;
 		}
-		ecap(params_pkisi.MPK.g, params_pkisi.MPK.h, q, cube, params_ts.e_g_h);
-		if (ecap(params_pkisi.MPK.g, params_pkisi.MPK.h, q, cube, params_ts.e_g_h)) {
-			cout<<"ecap:e_g_h success" << endl;
+		ecap(params_pkisi.MPK.g, params_pkisi.MPK.h, q, cube, params_pkisi.e_g_h);
+		if (ecap(params_pkisi.MPK.g, params_pkisi.MPK.h, q, cube, params_pkisi.e_g_h)) {
+			cout << "params_pkisi ecap:e_g_h success" << endl;
 		}
 		else {
-			cout << "ecap:e_g_h error" << endl;
+			cout << "params_pkisi ecap:e_g_h error" << endl;
 		}
 		/*------------------------ KeyGen pkisi .该阶段包括下述操作-----------------------------------------*/
 		upk1 = H1(Alice);//用户公钥
