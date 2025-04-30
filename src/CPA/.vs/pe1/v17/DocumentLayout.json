@@ -37,13 +37,9 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 645,
-          "SelectedChildIndex": 1,
+          "DockedHeight": 600,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -52,10 +48,14 @@
               "RelativeDocumentMoniker": "pemain.cpp",
               "ToolTip": "E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CPA\\pemain.cpp",
               "RelativeToolTip": "pemain.cpp",
-              "ViewState": "AgIAAIMBAAAAAAAAAAAUwOwBAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAHECAAAAAAAAAAAAwIACAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-07-18T13:37:35.392Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
             },
             {
               "$type": "Document",
@@ -132,7 +132,7 @@
           ]
         },
         {
-          "DockedHeight": 172,
+          "DockedHeight": 217,
           "SelectedChildIndex": -1,
           "Children": [
             {

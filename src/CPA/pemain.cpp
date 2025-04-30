@@ -309,6 +309,7 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		ECn g;
 		ZZn2 e;
 		PKISI_MPK MPK;
+		ZZn2 e_g_g, e_g_h;
 	}params_pkisi;
 
 
@@ -387,15 +388,15 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		K = y * K;
 	}
 	/*——————————————————————————————————— Enc-------------------------------------*/
-	void Enc(PKISI_MPK pkisi_mpk, Big q, user_msk user_msk, Big upk, Big QT, Params params, ZZn2 ming, Ciphtertext& c) {
+	void Enc(params_ts params_ts, params_pkisi params_pkisi,Big q, user_msk user_msk, Big upk, Big QT, ZZn2 PT, Ciphtertext& c) {
 		Big k1 = rand(q);
 		Big k2 = rand(q);
-		c.c1 = (k1 * pkisi_mpk.g1) + (-k1 * (QT%q) * pkisi_mpk.g);
+		c.c1 = (k1 * params_ts.ts_pub) + (-k1 * (QT%q) * params_ts.g);
 		//cout << "YES";
-		c.c2 = pow(params.e_g_g, k1);
-		c.c3 = (k2 * pkisi_mpk.g1) + (-k2 * (upk%q) * pkisi_mpk.g);
-		c.c4 = pow(params.e_g_g, k2 * user_msk.r);
-		c.c5 = ming * pow(params.e_g_h,-k1) *pow(params.e_g_h, -k2);
+		c.c2 = pow(params_ts.e_g_g, k1);
+		c.c3 = (k2 * params_pkisi.MPK.g1) + (-k2 * (upk%q) * params_pkisi.MPK.g);
+		c.c4 = pow(params_pkisi.e_g_g, k2 * user_msk.r);
+		c.c5 = PT * pow(params_ts.e_g_h,-k1) *pow(params_pkisi.e_g_h, -k2);
 	}
 	/*---------------------------------------- ReEnc----------------------------------------------------------------*/
 	void  ReEnc(Ciphtertext c, Big q, ZZn2 cube, ECn rk, ReCiphtertext& c1) {
@@ -406,7 +407,7 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		c1.c5 = c.c5;
 	}
 	/*-------------------------------RKGen----------------------------------------------*/
-	void RKGen(user_msk usk, Big upk, PKISI_MPK pkisi_mpk, ECn& rk, Params params, Big cof, Big q, ZZn2 cube, Ciphtertext c, RR& rr) {
+	void RKGen(user_msk usk, Big upk, PKISI_MPK pkisi_mpk, ECn& rk, params_ts params_ts, Big cof, Big q, ZZn2 cube, Ciphtertext c, RK_user& rr) {
 		ECn Q;
 		forever
 		{
@@ -420,27 +421,27 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		ZZn2 X;
 		ecap(c.c3, Q, q, cube, X);
 		rr.u = (k3 * pkisi_mpk.g1) + (((-k3) + upk) * pkisi_mpk.g);
-		rr.v = pow(params.e_g_g, k3);
-		rr.w = X * pow(params.e_g_h, -k3);
+		rr.v = pow(params_ts.e_g_g, k3);
+		rr.w = X * pow(params_ts.e_g_h, -k3);
 	}
 
-	void RTtrd(PKISI_MPK pkisi_mpk, Big q, Big QtTimeToBeDec, TRS_MPK &trs_mpk,TRS_MSK& trs_msk, St& st) {
+	void RTtrd(params_ts params_ts, Big q, Big QtTimeToBeDec,Big ts_msk, St& st) {
 		st.rt = rand(q);
-		Big y = trs_msk.s - QtTimeToBeDec;
+		Big y = ts_msk - QtTimeToBeDec;
 		y = inverse(1, y);
-		st.Kt = (pkisi_mpk.h + ((-st.rt) * pkisi_mpk.g));
+		st.Kt = (params_ts.h + ((-st.rt) * params_ts.g));
 		st.Kt = y*st.Kt;
-		while (trs_msk.s == QtTimeToBeDec) {
-			trs_msk.s = rand(q);
-			trs_mpk.g1 = trs_msk.s * pkisi_mpk.g;
-			Big y = trs_msk.s - QtTimeToBeDec;
+		while (ts_msk == QtTimeToBeDec) {
+			ts_msk = rand(q);
+			params_ts.ts_pub = ts_msk * params_ts.g;
+			Big y = ts_msk - QtTimeToBeDec;
 			y = inverse(1, y);
-			st.Kt = (pkisi_mpk.h + ((-st.rt) * pkisi_mpk.g));
+			st.Kt = (params_ts.h + ((-st.rt) * params_ts.g));
 			st.Kt = y * st.Kt;
 		}
-		cout << "trs_msk.s= " << trs_msk.s << endl;
+		cout << "ts_msk= " << ts_msk << endl;
 	}
-	void Dec1(RR rr, user_msk user_msk, Big q, ZZn2 cube, St st, ZZn2& X) {
+	void Dec1(RK_user rr, user_msk user_msk, Big q, ZZn2 cube, St st, ZZn2& X) {
 		ZZn2 Y;
 		ecap(rr.u, user_msk.K, q, cube, Y);
 		X = Y * pow(rr.v, user_msk.r) * rr.w;
@@ -464,7 +465,6 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 
 	
 	int main() {            
-		//123456789
 		// 修改：缺少大量椭圆曲线操作中间参数
 		ECn P, Q, R; //椭圆曲线上的点
 		ZZn2 g0, Qx, Qy, gid, gid1, cube, w;//自加     //gid:双线性对结果，gid1:双线性对结果，cube:立方根，w:幂运算结果 Qx,Qy:椭圆曲线上的点Q的坐标
@@ -476,7 +476,8 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		//
 		long seed;                                   //seed:随机数种子
 		//Big p;//p:素数
-		Big pkisi_msk;
+		Big pkisi_msk;//a
+		params_pkisi params_pkisi;
 		//PKISI_MPK pkisi_mpk;   主公钥是公开参数的一部分，故进行合并
 		//Big cof, n, a, t;//系数，n:随机数
 		Big ts_msk;
@@ -550,7 +551,7 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		forever
 		{
 			while (!params_ts.g.set(randn()));
-		params_ts.g *= cof;
+				params_ts.g *= cof;
 			if (!params_ts.g.iszero()) break;
 		}
 
@@ -558,23 +559,51 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		forever
 		{
 			while (!params_ts.h.set(randn()));
-		params_ts.h *= cof;
+				params_ts.h *= cof;
 			if (!params_ts.h.iszero()) break;
 		}
-		//产生椭圆曲线上双线性映射 e(g,g) 和 e(g,h)
+		//生成Pkisi生成元
+		forever
+		{
+			while (!params_pkisi.MPK.g.set(randn()));
+					params_pkisi.MPK.g *= cof;
+			if (!params_pkisi.MPK.g.iszero()) break;
+		}
+		forever
+		{
+			while (!params_pkisi.MPK.h.set(randn()));
+				params_pkisi.MPK.h *= cof;
+			if (!params_pkisi.MPK.h.iszero()) break;
+		}
+		//产生params_ts椭圆曲线上双线性映射 e(g,g) 和 e(g,h)
 		ecap(params_ts.g, params_ts.g, q, cube, params_ts.e_g_g);
 		if (ecap(params_ts.g, params_ts.g, q, cube, params_ts.e_g_g)) {
-			cout << "ecap:e_g_g success" << endl;
+			cout << "params_ts ecap:e_g_g success" << endl;
 		}
 		else {
-			cout << "ecap:e_g_g error" << endl;
+			cout << "params_ts ecap:e_g_g error" << endl;
 		}
 		ecap(params_ts.g, params_ts.h, q, cube, params_ts.e_g_h);
 		if (ecap(params_ts.g, params_ts.g, q, cube, params_ts.e_g_h)) {
-			cout << "ecap:e_g_h success" << endl;
+			cout << "params_ts ecap:e_g_h success" << endl;
 		}
 		else {
-			cout << "ecap:e_g_h error" << endl;
+			cout << "params_ts ecap:e_g_h error" << endl;
+		}
+		//产生params_pkisi椭圆曲线上双线性映射 e(g,g) 和 e(g,h)
+		ecap(params_pkisi.MPK.g, params_pkisi.MPK.g, q, cube, params_pkisi.e_g_g);
+		if (ecap(params_pkisi.MPK.g, params_pkisi.MPK.g, q, cube, params_pkisi.e_g_g)) {
+			cout << "params_pkisi ecap:e_g_g success" << endl;
+		}
+		else {
+			cout << "params_pkisi ecap:e_g_g error" << endl;
+		}
+		ecap(params_pkisi.MPK.g, params_pkisi.MPK.h, q, cube, params_pkisi.e_g_h);
+		if (ecap(params_pkisi.MPK.g, params_pkisi.MPK.h, q, cube, params_pkisi.e_g_h)) {
+			cout << "params_pkisi ecap:e_g_h success" << endl;
+		}
+		else {
+			cout << "params_pkisi ecap:e_g_h error" << endl;
 		}
 
 		// 时间服务器私钥生成，
@@ -582,35 +611,35 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		params_ts.ts_pub = ts_msk * params_ts.g;
 
 		/*----------------------------------------产生明文----------------------------------------------------*/
-		ming = randn2();
-		cout << "加密明文为：" << ming << endl;
+		PT = randn2();
+		cout << "加密明文为：" << PT << endl;
 
-		pkisi_msk.alpha = rand(q);
+		pkisi_msk = rand(q);
 		//产生g,h
 		forever
 		{
-			while (!pkisi_mpk.g.set(randn()));
-			pkisi_mpk.g *= cof;
-			if (!pkisi_mpk.g.iszero()) break;
+			while (!params_pkisi.MPK.g.set(randn()));
+				params_pkisi.MPK.g *= cof;
+			if (!params_pkisi.MPK.g.iszero()) break;
 		}
 			//产生椭圆曲线上生成元P1(g1)
-		pkisi_mpk.g1 = pkisi_msk.alpha * pkisi_mpk.g;
+		params_pkisi.MPK.g1 = pkisi_msk * params_pkisi.MPK.g;
 
 		forever
 		{
-			while (!pkisi_mpk.h.set(randn()));
-			pkisi_mpk.h *= cof;
-			if (!pkisi_mpk.h.iszero()) break;
+			while (!params_pkisi.MPK.h.set(randn()));
+				params_pkisi.MPK.h *= cof;
+			if (!params_pkisi.MPK.h.iszero()) break;
 		}
-		ecap(pkisi_mpk.g, pkisi_mpk.g, q, cube, params.e_g_g);
-		if (ecap(pkisi_mpk.g, pkisi_mpk.g, q, cube, params.e_g_g)) {
+		ecap(params_pkisi.MPK.g, params_pkisi.MPK.g, q, cube, params_ts.e_g_g);
+		if (ecap(params_pkisi.MPK.g, params_pkisi.MPK.g, q, cube, params_ts.e_g_g)) {
 			cout << "ecap:e_g_g success" << endl;
 		}
 		else {
 			cout << "ecap:e_g_g error" << endl;
 		}
-		ecap(pkisi_mpk.g, pkisi_mpk.h, q, cube, params.e_g_h);
-		if (ecap(pkisi_mpk.g, pkisi_mpk.h, q, cube, params.e_g_h)) {
+		ecap(params_pkisi.MPK.g, params_pkisi.MPK.h, q, cube, params_ts.e_g_h);
+		if (ecap(params_pkisi.MPK.g, params_pkisi.MPK.h, q, cube, params_ts.e_g_h)) {
 			cout<<"ecap:e_g_h success" << endl;
 		}
 		else {
@@ -623,39 +652,22 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		upk4 = H1(Andy);
 		QtTimeToBeDec = H1(TimeToBeDec);
 		QtTimeNow = H1(TimeNow);
-		while (pkisi_msk.alpha == upk1|| pkisi_msk.alpha == upk2|| pkisi_msk.alpha == upk3|| pkisi_msk.alpha == upk4) {
-			pkisi_msk.alpha = rand(q);
-			pkisi_mpk.g1 = pkisi_msk.alpha * pkisi_mpk.g;
+		while (pkisi_msk == upk1|| pkisi_msk == upk2|| pkisi_msk == upk3|| pkisi_msk == upk4) {
+			pkisi_msk = rand(q);
+			params_pkisi.MPK.g1 = pkisi_msk * params_pkisi.MPK.g;
 		}
-		cout << "pkisi_msk.alpha= " << pkisi_msk.alpha << endl;
+		cout << "pkisi_msk.alpha= " << pkisi_msk << endl;
 		/*PKG为用户生成私钥*/
-		/*void  KeyGen(ECn h, ECn g, Big alpha, Big& r, Big q, ECn& K, Big upk) {
-		r = rand(q);
-		K = (- r )* g;
-		K = K + h;
-		Big y = alpha - upk;
-		y = inverse(1, y);
-		K = y * K;
-	}*/
-		KeyGen(pkisi_mpk.h, pkisi_mpk.g, pkisi_msk.alpha, user_msk1.r, q, user_msk1.K, upk1);
+		KeyGen(params_pkisi.MPK.h, params_pkisi.MPK.g, pkisi_msk, user_msk1.r, q, user_msk1.K, upk1);
 
 		/*KeyGen(pkisi_mpk.h, pkisi_mpk.g, pkisi_msk.alpha, user_msk2.r, q, user_msk2.K, upk2);
 		KeyGen(pkisi_mpk.h, pkisi_mpk.g, pkisi_msk.alpha, user_msk3.r, q, user_msk3.K, upk3);
 		KeyGen(pkisi_mpk.h, pkisi_mpk.g, pkisi_msk.alpha, user_msk4.r, q, user_msk4.K, upk4);*/
 		/*-------------------------------加密-------------------------------------------*/
-		/*void Enc(TRS_MPK trs_mpk, PKISI_MPK pkisi_mpk, Big p, user_msk user_msk, Big upk, Big QT, Params params, ZZn2 ming, Ciphtertext& c) {
-		Big k1 = rand(p);
-		Big k2 = rand(p);
-		c.c1 = (k1 * pkisi_mpk.g1) + (((-k1) + QT) * pkisi_mpk.g);
-		c.c2 = pow(params.e_g_g, k1);
-		c.c3 = (k2 * pkisi_mpk.g1) + (((-k2) + upk) * pkisi_mpk.g);
-		c.c4 = pow(params.e_g_g, k2 * user_msk.r);
-		c.c5 = ming * pow(params.e_g_h, -k1) * pow(params.e_g_h, -k2);
-	}*/
-		Enc(pkisi_mpk, q, user_msk1, upk1, QtTimeToBeDec, params, ming, c1);
-		RTtrd(pkisi_mpk, q, QtTimeNow, trs_mpk, trs_msk, st);
-		Dec(c1, user_msk1, q, cube, st, ming11);
-		cout << "发送者解密明文为：" << ming11 << endl;
+		Enc(params_ts, params_pkisi,q,user_msk1,upk1, QtTimeToBeDec,PT, c1);
+		RTtrd(params_ts, q, QtTimeNow, ts_msk, st);
+		Dec(c1, user_msk1, q, cube, st, PT);
+		cout << "发送者解密明文为：" << PT << endl;
 		/*--------------------------------RkGen-----------------------------------*/
 		
 		/*RKGen(user_msk1, upk2, pkisi_mpk, rk, params, cof, q, cube, c1, rr2);
