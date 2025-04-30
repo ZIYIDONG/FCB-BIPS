@@ -294,6 +294,12 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		h %= p;
 		return h;
 	}
+
+	// the public key of PKISI
+	typedef struct PKISI_MPK {
+		ECn g, h, g1;
+	}PKISI_MPK;
+
 	
 	// the public params of ts
 	typedef struct params_ts
@@ -303,10 +309,6 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		ECn ts_pub;
 	}params_ts;
 
-	// the public key of PKISI
-	typedef struct PKISI_MPK {
-		ECn g, h, g1;
-	}PKISI_MPK;
 
 	// the public params of pkisi
 	typedef struct params_pkisi
