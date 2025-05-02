@@ -214,7 +214,7 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 #endif
 
 		p = get_modulus();         // get p
-		cout << p << "217" << endl;
+		//cout << p << "217" << endl;
 		res = pow(res, (p + 1) / q);   // raise to power of (p^2-1)/q
 		res = conj(res) / res;
 		if (res.isunity()) return FALSE;
@@ -387,34 +387,35 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 	//PKISI计算用户私钥
 	void  KeyGen(ECn h, ECn g, Big alpha, Big& r, Big q, ECn& K, Big upk, Big p) {
 		r = rand(q);
-		cout << "390:" << "r= " << r << endl;
+		//cout << "390:" << "r= " << r << endl;
 		// r = inverse(1, r); 修改：删除
 		K = (-r) * g;
-		cout << "393:" << "K= " << K << endl;
+		//cout << "393:" << "K= " << K << endl;
 		K = K + h;
-		cout << "395:" << "K= " << K << endl;
-		cout << "397:" << "y= " << alpha - upk << endl;
-		//Big y = (alpha - upk) % p;
-		Big y = (upk - alpha) % p;
-		cout << "397:" << "y= " << y << endl;
-		cout << "398:" << "p= " << p << endl;
+		/*cout << "395:" << "K= " << K << endl;
+		cout << "397:" << "y= " << alpha - upk << endl;*/
+		Big y = alpha - upk;
+		//Big y = (upk - alpha) % p;
+		/*cout << "397:" << "y= " << y << endl;
+		cout << "398:" << "p= " << p << endl;*/
 		Big z = inverse(y, p);
-		cout << "400:" << "z= " << z << endl;
-		Big temp = z * y % p;
-		cout << "401:" << "p= " << p << endl;
+		//cout << "400:" << "z= " << y << endl;
+		//Big temp = z  * y % p;
+		/*cout << "401:" << "p= " << p << endl;
 		cout << "402:" << "y= " << y << endl;
 		cout << "403:" << "z= " << z << endl;
 		cout << "404:" << "y= " << y << endl;
-		cout << "405:" << "temp= " << temp << endl;
+		cout << "405:" << "temp= " << temp << endl;*/
 		K = y * K;
-		cout << "403:" << "K= " << K << endl;
+		//cout << "403:" << "K= " << K << endl;
 	}
 	/*——————————————————————————————————— Enc-------------------------------------*/
-	void Enc(params_ts params_ts, params_pkisi params_pkisi,Big q, user_msk user_msk, Big upk, Big QT, ZZn2 PT, Ciphtertext& c) {
-		Big k1 = rand(q);
-		Big k2 = rand(q);
-		c.c1 = (k1 * params_ts.ts_pub) + ((-k1) * (QT) * params_ts.g);
+	void Enc(params_ts params_ts, params_pkisi params_pkisi,Big q, user_msk user_msk, Big upk, Big QT, ZZn2 PT,Big p, Ciphtertext& c) {
+		Big k1 = 10;
+		Big k2 = 12;
 		//cout << "YES";
+		//cout << "YES";
+		c.c1 = (k1 * params_ts.ts_pub) + ((-k1) * (QT) * params_ts.g);
 		c.c2 = pow(params_ts.e_g_g, k1);
 		c.c3 = (k2 * params_pkisi.MPK.g1) + ((-k2) * (upk) * params_pkisi.MPK.g);
 		c.c4 = pow(params_pkisi.e_g_g, k2 * user_msk.r);
@@ -447,17 +448,17 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		rr.w = X * pow(params_ts.e_g_h, -k3);
 	}
 
-	void RTtrd(params_ts params_ts, Big q, Big QtTimeNow,Big ts_msk, St& st) {
+	void RTtrd(params_ts &params_ts, Big q, Big QtTimeNow,Big &ts_msk, Big p,St& st) {
 		st.rt = rand(q);
 		Big y = ts_msk - QtTimeNow;
-		y = inverse(1, y);
+		y = inverse(y, p);
 		st.Kt = (params_ts.h + ((-st.rt) * params_ts.g));
 		st.Kt = y*st.Kt;
 		while (ts_msk == QtTimeNow) {
 			ts_msk = rand(q);
 			params_ts.ts_pub = ts_msk * params_ts.g;
 			y = ts_msk - QtTimeNow;
-			y = inverse(1, y);
+			y = inverse(y, p);
 			st.Kt = (params_ts.h + ((-st.rt) * params_ts.g));
 			st.Kt = y * st.Kt;
 		}
@@ -605,7 +606,7 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		params_ts.ts_pub = ts_msk * params_ts.g;
 
 		/*----------------------------------------产生明文----------------------------------------------------*/
-		PT = randn2();
+		PT =randn2();
 		cout << "加密明文为：" << PT << endl;
 
 		pkisi_msk = rand(q);
@@ -654,14 +655,14 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		cout << "pkisi_msk.alpha= " << pkisi_msk << endl;
 		/*PKG为用户生成私钥*/
 		KeyGen(params_pkisi.MPK.h, params_pkisi.MPK.g, pkisi_msk, user_msk1.r, q, user_msk1.K, upk1, p);
-
 		/*KeyGen(pkisi_mpk.h, pkisi_mpk.g, pkisi_msk.alpha, user_msk2.r, q, user_msk2.K, upk2);
 		KeyGen(pkisi_mpk.h, pkisi_mpk.g, pkisi_msk.alpha, user_msk3.r, q, user_msk3.K, upk3);
 		KeyGen(pkisi_mpk.h, pkisi_mpk.g, pkisi_msk.alpha, user_msk4.r, q, user_msk4.K, upk4);*/
 		/*-------------------------------加密-------------------------------------------*/
-		Enc(params_ts, params_pkisi,q,user_msk1,upk1, QtTimeToBeDec, PT, c1);
-		RTtrd(params_ts, q, QtTimeNow, ts_msk, st);
+		RTtrd(params_ts, q, QtTimeNow, ts_msk, p, st);
+		Enc(params_ts, params_pkisi,q,user_msk1,upk1, QtTimeToBeDec, PT, p,c1);
 		Dec(c1, user_msk1, q, cube, st, PT);
+		cout << params_pkisi.MPK.g << endl;
 		cout << "发送者解密明文为：" << PT << endl;
 		/*--------------------------------RkGen-----------------------------------*/
 		
