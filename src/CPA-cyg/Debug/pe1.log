@@ -1,0 +1,15 @@
+﻿cl : 命令行 warning D9035: “Gm”选项已否决，并将在将来的版本中移除
+  pemain.cpp
+D:\DeskTop\董子仪论文\code_add_enc_sign - 副本\ecn.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\DeskTop\董子仪论文\code_add_enc_sign - 副本\zzn2.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\DeskTop\董子仪论文\code_add_enc_sign - 副本\pemain.cpp(504,11): warning C4101: “t_dec”: 未引用的局部变量
+D:\DeskTop\董子仪论文\code_add_enc_sign - 副本\pemain.cpp(499,21): warning C4101: “y2”: 未引用的局部变量
+D:\DeskTop\董子仪论文\code_add_enc_sign - 副本\pemain.cpp(499,13): warning C4101: “y1”: 未引用的局部变量
+D:\DeskTop\董子仪论文\code_add_enc_sign - 副本\pemain.cpp(499,9): warning C4101: “x1”: 未引用的局部变量
+D:\DeskTop\董子仪论文\code_add_enc_sign - 副本\pemain.cpp(503,13): warning C4101: “start_time”: 未引用的局部变量
+D:\DeskTop\董子仪论文\code_add_enc_sign - 副本\pemain.cpp(501,10): warning C4101: “pad”: 未引用的局部变量
+D:\DeskTop\董子仪论文\code_add_enc_sign - 副本\pemain.cpp(503,25): warning C4101: “end_time”: 未引用的局部变量
+D:\DeskTop\董子仪论文\code_add_enc_sign - 副本\pemain.cpp(496,9): warning C4101: “i”: 未引用的局部变量
+D:\DeskTop\董子仪论文\code_add_enc_sign - 副本\pemain.cpp(499,17): warning C4101: “x2”: 未引用的局部变量
+D:\DeskTop\董子仪论文\code_add_enc_sign - 副本\pemain.cpp(496,12): warning C4101: “tag”: 未引用的局部变量
+  pe1.vcxproj -> D:\DeskTop\董子仪论文\code_add_enc_sign - 副本\Debug\pe1.exe
