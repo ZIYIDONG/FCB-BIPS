@@ -402,7 +402,6 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		CT.c1 = (k1 * params_ts.ts_pub) + ((k1 * (-params_ts.g)) + (QT * (-params_ts.g)));
 		CT.c2 = pow(params_ts.e_g_g, k1);
 		CT.c3 = (k2 * params_pkisi.MPK.g1) + ((k2 * (-params_pkisi.MPK.g)) + (upk * (-params_pkisi.MPK.g)));
-		//c.c3 = (k2 * params_pkisi.MPK.g1) + (k2 * upk * (-params_pkisi.MPK.g));
 		CT.c4 = pow(params_pkisi.e_g_g, k2 * user_msk.r);
 		CT.c5 = PT * pow(params_ts.e_g_h, (-k1)) * pow(params_pkisi.e_g_h, (-k2));
 		cout << "Enc complete" << endl;
@@ -435,7 +434,7 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		rr.w = X * pow(params_ts.e_g_h, -k3);
 	}
 
-	void RTtrd(params_ts params_ts, Big ts_msk, Big QtTimeNow, St st, Big q, Big p) {
+	void RTtrd(params_ts params_ts, Big ts_msk, Big QtTimeNow, St& st, Big q, Big p) {
 		st.rt = rand(q);
 		Big y = ts_msk - QtTimeNow;
 		y = inverse(y, p);
@@ -482,8 +481,8 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		else {
 			cout << "Y2 Failure" << endl;
 		}
-		//cout << Y1 << " " << pow(c.c2, st.rt) << " " << Y2 << " " << c.c4 << " " << c.c5 << endl;
 		PT_Alice = Y1 * pow(CT.c2, st.rt) * Y2 * CT.c4 * CT.c5;
+		cout << "Dec complete" << endl;
 	}
 
 	
@@ -661,10 +660,10 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		KeyGen(pkisi_mpk.h, pkisi_mpk.g, pkisi_msk.alpha, user_msk_Andy.r, q, user_msk_Andy.K, upk_Andy);*/
 		/*-------------------------------加密-------------------------------------------*/
 		RTtrd(params_ts, ts_msk, QtTimeNow, st, q, p);
-		Enc(params_ts, params_pkisi, user_msk_Alice, upk_Alice, QtTimeToBeDec, PT, q, p,CT);
+		Enc(params_ts, params_pkisi, user_msk_Alice, upk_Alice, QtTimeToBeDec, PT, q, p, CT);
 		Dec(CT, user_msk_Alice, q, cube, st, PT_Alice);
 		//cout << params_pkisi.MPK.g << endl;
-		cout << "发送者解密明文为：" << PT << endl;
+		cout << "发送者解密明文为：" << PT_Alice << endl;
 		/*--------------------------------RkGen-----------------------------------*/
 		
 		/*RKGen(user_msk_Alice, upk_Bob, pkisi_mpk, rk, params, cof, q, cube, CT, rr2);
