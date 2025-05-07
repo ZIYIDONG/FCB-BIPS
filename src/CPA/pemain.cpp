@@ -402,8 +402,18 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		CT.c1 = (k1 * params_ts.ts_pub) + ((k1 * (-params_ts.g)) + (QT * (-params_ts.g)));
 		CT.c2 = pow(params_ts.e_g_g, k1);
 		CT.c3 = (k2 * params_pkisi.MPK.g1) + ((k2 * (-params_pkisi.MPK.g)) + (upk * (-params_pkisi.MPK.g)));
-		CT.c4 = pow(params_pkisi.e_g_g, k2 * user_msk.r);
-		CT.c5 = PT * pow(params_ts.e_g_h, (-k1)) * pow(params_pkisi.e_g_h, (-k2));
+		CT.c4 = pow(params_pkisi.e_g_g, k2) + pow(params_pkisi.e_g_g, user_msk.r);
+		cout << "c4=" << CT.c4 << endl;
+
+		ZZn2 c4 = pow(params_pkisi.e_g_g, k2 * user_msk.r);
+		cout << "c4=" << c4 << endl;
+		ZZn2 e_g_h = inverse(params_ts.e_g_h);
+		ZZn2 e_g_h1 = inverse(params_pkisi.e_g_h);
+		CT.c5 = PT * pow(e_g_h, (k1)) * pow(e_g_h1, (k2));
+		cout << "c5=" << CT.c5 << endl;
+
+		ZZn2 c5 = PT * pow(params_ts.e_g_h, (-k1)) * pow(params_pkisi.e_g_h, (-k2));
+		cout << "c5=" << c5 << endl;
 		cout << "Enc complete" << endl;
 	}
 	/*---------------------------------------- ReEnc----------------------------------------------------------------*/
@@ -437,7 +447,9 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 	void RTtrd(params_ts params_ts, Big ts_msk, Big QtTimeNow, St& st, Big q, Big p) {
 		st.rt = rand(q);
 		Big y = ts_msk - QtTimeNow;
+		cout << "1y=" << y << endl;
 		y = inverse(y, p);
+		cout << "2y=" << y << endl;
 		st.Kt = (params_ts.h + (st.rt * (-params_ts.g)));
 		st.Kt = y * st.Kt;
 		/*while (ts_msk == QtTimeNow) {
