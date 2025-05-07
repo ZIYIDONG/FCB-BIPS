@@ -402,14 +402,16 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		CT.c1 = (k1 * params_ts.ts_pub) + ((k1 * (-params_ts.g)) + (QT * (-params_ts.g)));
 		CT.c2 = pow(params_ts.e_g_g, k1);
 		CT.c3 = (k2 * params_pkisi.MPK.g1) + ((k2 * (-params_pkisi.MPK.g)) + (upk * (-params_pkisi.MPK.g)));
-		CT.c4 = pow(params_pkisi.e_g_g, k2) + pow(params_pkisi.e_g_g, user_msk.r);
+		//pow(params_pkisi.e_g_g, k2 + user_msk.r)和pow(params_pkisi.e_g_g, k2) * pow(params_pkisi.e_g_g, user_msk.r);结果一样
+		CT.c4 = pow(params_pkisi.e_g_g, k2 * user_msk.r);
 		cout << "c4=" << CT.c4 << endl;
 
-		ZZn2 c4 = pow(params_pkisi.e_g_g, k2 * user_msk.r);
+		ZZn2 c4 = pow(params_pkisi.e_g_g, k2) * pow(params_pkisi.e_g_g, user_msk.r);
 		cout << "c4=" << c4 << endl;
 		ZZn2 e_g_h = inverse(params_ts.e_g_h);
 		ZZn2 e_g_h1 = inverse(params_pkisi.e_g_h);
 		CT.c5 = PT * pow(e_g_h, (k1)) * pow(e_g_h1, (k2));
+			
 		cout << "c5=" << CT.c5 << endl;
 
 		ZZn2 c5 = PT * pow(params_ts.e_g_h, (-k1)) * pow(params_pkisi.e_g_h, (-k2));
