@@ -387,7 +387,6 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		msk.K = msk.r * (-params_pkisi.MPK.g);
 		msk.K = msk.K + params_pkisi.MPK.h;
 		Big y = pkisi_msk - upk;
-		cout << "y=" << y << endl;
 		Big z = inverse(y, p);
 		cout << "z=" << z << endl;
 		//cout << (z * y) % q << endl;
@@ -399,9 +398,24 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 	void Enc(params_ts params_ts, params_pkisi params_pkisi, user_msk user_msk, Big upk, Big QT, ZZn2 PT, Big q, Big p, Ciphtertext& CT) {
 		Big k1 = rand(q);
 		Big k2 = rand(q);
-		CT.c1 = (k1 * params_ts.ts_pub) + ((k1 * (-params_ts.g)) + (QT * (-params_ts.g)));
+		cout << "p = " << p << endl;
+		cout << "get_modulus() = " << get_modulus() << endl;
+		cout << "k1 = " << k1 << endl;
+		cout << "k2 = " << k2 << endl;
+		cout << "QT = " << QT << endl;
+		cout << "QT % get_modulus() = " << QT % p  << endl;
+		cout << "upk = " << upk << endl;
+		cout << "upk % get_modulus() = " << upk % p << endl;
+		cout << "user_msk.r = " << user_msk.r << endl;
+		cout << "k2 * user_msk.r = " << k2 * user_msk.r << endl;
+		Big product1 = (k2 * upk) % get_modulus();
+		cout << "product1 = " << product1 << endl;
+		Big product2 = (k1 * QT) % p;
+		cout << "product2 = " << product2 << endl;
+		CT.c1 = (k1 * params_ts.ts_pub) + ((k1 * QT) * (-params_ts.g));
 		CT.c2 = pow(params_ts.e_g_g, k1);
-		CT.c3 = (k2 * params_pkisi.MPK.g1) + ((k2 * (-params_pkisi.MPK.g)) + (upk * (-params_pkisi.MPK.g)));
+		CT.c3 = (k2 * params_pkisi.MPK.g1) + ((k2 * upk) * (-params_pkisi.MPK.g));
+		//CT.c3 = (k2 * params_pkisi.MPK.g1) + ((k2 * upk) * (-params_pkisi.MPK.g));
 		CT.c4 = pow(params_pkisi.e_g_g, k2 * user_msk.r);
 		CT.c5 = PT * pow(params_ts.e_g_h, (-k1)) * pow(params_pkisi.e_g_h, (-k2));
 		cout << "Enc complete" << endl;
@@ -527,6 +541,7 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		St st;
 		ZZn2 X_Bob, X_Tom, X_Andy;    // 解密所用中间参数 X
 		miracl* mip = &precision;                    //miracl* mip:精度
+		mip->ERCON = TRUE; // 启用错误控制
 
 		cout << "由于有些基本操作耗时不足1毫秒，所有基本操作都将重复执行" << renum << "次 " << endl;
 		cout << "Enter 9 digit random number seed  = ";
@@ -643,11 +658,14 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		}
 		/*------------------------ KeyGen pkisi .该阶段包括下述操作-----------------------------------------*/
 		upk_Alice = H1(Alice);//用户公钥
+		cout << "upk_Alice= " << upk_Alice << endl;
 		upk_Bob = H1(Bob);
 		upk_Tom = H1(Tom);
 		upk_Andy = H1(Andy);
 		QtTimeToBeDec = H1(TimeToBeDec);
+		cout << "QtTimeToBeDec= " << QtTimeToBeDec << endl;
 		QtTimeNow = H1(TimeNow);
+		cout << "QtTimeNow= " << QtTimeNow << endl;
 		/*while (pkisi_msk == upk_Alice || pkisi_msk == upk_Bob || pkisi_msk == upk_Tom || pkisi_msk == upk_Andy) {
 			pkisi_msk = rand(q);
 			params_pkisi.MPK.g1 = pkisi_msk * params_pkisi.MPK.g;
@@ -655,6 +673,7 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		cout << "pkisi_msk.alpha= " << pkisi_msk << endl;
 		/*PKG为用户生成私钥*/
 		KeyGen(params_pkisi, pkisi_msk, upk_Alice, user_msk_Alice, q, p);
+		cout << "user_msk_Alice=" << user_msk_Alice.r << endl;
 		/*KeyGen(pkisi_mpk.h, pkisi_mpk.g, pkisi_msk.alpha, user_msk_Bob.r, q, user_msk_Bob.K, upk_Bob);
 		KeyGen(pkisi_mpk.h, pkisi_mpk.g, pkisi_msk.alpha, user_msk_Tom.r, q, user_msk_Tom.K, upk_Tom);
 		KeyGen(pkisi_mpk.h, pkisi_mpk.g, pkisi_msk.alpha, user_msk_Andy.r, q, user_msk_Andy.K, upk_Andy);*/
