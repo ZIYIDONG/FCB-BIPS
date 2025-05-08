@@ -400,9 +400,10 @@ void Enc(params_ts params_ts, params_pkisi params_pkisi, user_msk& user_msk, Big
 		Big k2 = rand(q);
 		//Big k1 = 11111111;
 		//Big k2 = 11111111;
-		CT.c1 = (k1 * params_ts.g1) + (k1 * QT) * (-params_ts.g);
+		CT.c1 = (k1 * params_ts.g1) + (QT * (k1 * (-params_ts.g)));
+			//(k1 * params_ts.g1) + (k1 * QT) * (-params_ts.g);
 		CT.c2 = pow(params_ts.e_g_g, k1); 
-		CT.c3 = (k2 * params_pkisi.g1) + ((k2 * upk) * (-params_pkisi.g)); 
+		CT.c3 = (k2 * params_pkisi.g1) + (upk * (k2 * (-params_pkisi.g)));
 		CT.c4 = pow(params_pkisi.e_g_g, k2 * user_msk.r);
 		CT.c5 = PT * pow((inverse(params_ts.e_g_h)), k1) * pow(inverse(params_pkisi.e_g_h), k2);
 		cout << "Enc complete" << endl;
@@ -649,18 +650,18 @@ void Enc(params_ts params_ts, params_pkisi params_pkisi, user_msk& user_msk, Big
 			cout << "params_pkisi ecap:e_g_h error" << endl;
 		}
 		/*------------------------ KeyGen pkisi .该阶段包括下述操作-----------------------------------------*/
-		//upk_Alice = H1(Alice);//用户公钥
+		upk_Alice = H1(Alice);//用户公钥
 		//upk_Bob = H1(Bob);
 		//upk_Tom = H1(Tom);
 		//upk_Andy = H1(Andy);
-		//QtTimeToBeDec = H1(TimeToBeDec);
-		//QtTimeNow = H1(TimeNow);
-		upk_Alice = 1111111111;
+		QtTimeToBeDec = H1(TimeToBeDec);
+		QtTimeNow = H1(TimeNow);
+		//upk_Alice = 1111111111;
 		/*upk_Bob = H1(Bob);
 		upk_Tom = H1(Tom);
 		upk_Andy = H1(Andy);*/
-		QtTimeToBeDec = 1111111111;
-		QtTimeNow = 1111111111;
+		/*QtTimeToBeDec = 1111111111;
+		QtTimeNow = 1111111111;*/
 		/*while (pkisi_msk == upk_Alice || pkisi_msk == upk_Bob || pkisi_msk == upk_Tom || pkisi_msk == upk_Andy) {
 			pkisi_msk = rand(q);
 			params_pkisi.MPK.g1 = pkisi_msk * params_pkisi.MPK.g;

@@ -6,3 +6,4 @@ C:\Users\Ziyi_Dong\Desktop\codeadd\Debug\pe1.exe
 A:\信安项目\code_add_enc\Debug\pe1.exe
 E:\deskbook\代码实现\code_add_enc_new\code_add_enc\Debug\pe1.exe
 C:\Users\ZiyiDong\Desktop\Repositories\FCB-BIPS\src\CCA\code_add_enc_new\code_add_enc\Debug\pe1.exe
+E:\论文实验\FCB-BIPS\src\CCA\code_add_enc_new\code_add_enc\Debug\pe1.exe
