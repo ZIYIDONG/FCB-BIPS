@@ -299,25 +299,25 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 	}
 
 	// the public key of PKISI
-	typedef struct PKISI_MPK {
+	/*typedef struct PKISI_MPK {
 		ECn g, h, g1;
-	}PKISI_MPK;
+	}PKISI_MPK;*/
 
 	// the public params of pkisi
 	typedef struct params_pkisi
 	{
 		//ECn g;
-		//ZZn2 e;
-		PKISI_MPK MPK;
+		ECn g, h, g1;
+		//PKISI_MPK MPK;
 		ZZn2 e_g_g, e_g_h;
 	}params_pkisi;
 
 	// the public params of ts
 	typedef struct params_ts
 	{
-		ECn g, h;
+		ECn g1, g, h;
 		ZZn2 e_g_g,e_g_h;
-		ECn ts_pub;
+		//ECn ts_pub;
 	}params_ts;
 
 	// the private key of PKISI  \\ 只有一个元素，没必要设置结构体
@@ -344,7 +344,7 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 	}user_msk;
 
 	// 原始密文结构体
-	typedef struct Ciphtertext {
+	typedef struct   {
 		ECn c1;
 		ZZn2 c2;
 		ECn c3;
@@ -384,74 +384,64 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 	//PKISI计算用户私钥
 	void  KeyGen(params_pkisi params_pkisi, Big pkisi_msk, Big upk, user_msk& msk, Big q, Big p) {
 		msk.r = rand(q);
-		msk.K = msk.r * (-params_pkisi.MPK.g);
-		msk.K = msk.K + params_pkisi.MPK.h;
+		//msk.r = 11111111;
+		msk.K = msk.r * (-params_pkisi.g);
+		msk.K = msk.K + params_pkisi.h;
 		Big y = pkisi_msk - upk;
-		Big z = inverse(y, p);
+		cout << "y= " << y << endl;
+		Big z = inverse(y, p);   // 此处需要做验证
 		cout << "z=" << z << endl;
-		//cout << (z * y) % q << endl;
-		//cout << "test2" << endl;
 		msk.K = z * msk.K;
 		cout << "KeyGen complete" << endl;
 	}
 	/*——————————————————————————————————— Enc-------------------------------------*/
-	void Enc(params_ts params_ts, params_pkisi params_pkisi, user_msk user_msk, Big upk, Big QT, ZZn2 PT, Big q, Big p, Ciphtertext& CT) {
+void Enc(params_ts params_ts, params_pkisi params_pkisi, user_msk& user_msk, Big& upk, Big& QT, ZZn2& PT, Big& q, Big& p, Ciphtertext& CT) {		
 		Big k1 = rand(q);
 		Big k2 = rand(q);
-		cout << "p = " << p << endl;
-		cout << "get_modulus() = " << get_modulus() << endl;
-		cout << "k1 = " << k1 << endl;
-		cout << "k2 = " << k2 << endl;
-		cout << "QT = " << QT << endl;
-		cout << "QT % get_modulus() = " << QT % p  << endl;
-		cout << "upk = " << upk << endl;
-		cout << "upk % get_modulus() = " << upk % p << endl;
-		cout << "user_msk.r = " << user_msk.r << endl;
-		cout << "k2 * user_msk.r = " << k2 * user_msk.r << endl;
-		Big product1 = (k2 * upk) % get_modulus();
-		cout << "product1 = " << product1 << endl;
-		Big product2 = (k1 * QT) % p;
-		cout << "product2 = " << product2 << endl;
-		CT.c1 = (k1 * params_ts.ts_pub) + ((k1 * QT) * (-params_ts.g));
-		CT.c2 = pow(params_ts.e_g_g, k1);
-		CT.c3 = (k2 * params_pkisi.MPK.g1) + ((k2 * upk) * (-params_pkisi.MPK.g));
-		//CT.c3 = (k2 * params_pkisi.MPK.g1) + ((k2 * upk) * (-params_pkisi.MPK.g));
+		//Big k1 = 11111111;
+		//Big k2 = 11111111;
+		CT.c1 = (k1 * params_ts.g1) + (k1 * QT) * (-params_ts.g);
+		CT.c2 = pow(params_ts.e_g_g, k1); 
+		CT.c3 = (k2 * params_pkisi.g1) + ((k2 * upk) * (-params_pkisi.g)); 
 		CT.c4 = pow(params_pkisi.e_g_g, k2 * user_msk.r);
-		CT.c5 = PT * pow(params_ts.e_g_h, (-k1)) * pow(params_pkisi.e_g_h, (-k2));
+		CT.c5 = PT * pow((inverse(params_ts.e_g_h)), k1) * pow(inverse(params_pkisi.e_g_h), k2);
 		cout << "Enc complete" << endl;
+		cout << endl << "params_ts.g1 = " << params_ts.g1 << endl;
+		cout << endl << "params_pkisi.MPK.g1 = " << params_pkisi.g1 << endl;
 	}
 	/*---------------------------------------- ReEnc----------------------------------------------------------------*/
-	void  ReEnc(Ciphtertext c, Big q, ZZn2 cube, ECn rk, ReCiphtertext& CT) {
+	/*void  ReEnc(Ciphtertext c, Big q, ZZn2 cube, ECn rk, ReCiphtertext& CT) {
 		CT.c1 = c.c1;
 		CT.c2 = c.c2;
 		ecap(c.c3, rk, q, cube, CT.c3);
 		CT.c4 = c.c4;
 		CT.c5 = c.c5;
 		cout << "ReEnc complete" << endl;
-	}
+	}*/
 	/*-------------------------------RKGen----------------------------------------------*/
-	void RKGen(user_msk usk, Big upk, PKISI_MPK pkisi_mpk, ECn& rk, params_ts params_ts, Big cof, Big q, ZZn2 cube, Ciphtertext c, RK_user& rr) {
-		ECn Q;
-		forever
-		{
-			while (!Q.set(randn()));
-			Q *= cof;
-			if (!Q.iszero()) break;
-		}
-			//待定
-		rk = usk.K + Q;
-		Big k3 = rand(q);
-		ZZn2 X;
-		ecap(c.c3, Q, q, cube, X);
-		rr.u = (k3 * pkisi_mpk.g1) + (((-k3) + upk) * pkisi_mpk.g);
-		rr.v = pow(params_ts.e_g_g, k3);
-		rr.w = X * pow(params_ts.e_g_h, -k3);
-	}
+	//void RKGen(user_msk usk, Big upk, ECn& rk, params_ts params_ts, Big cof, Big q, ZZn2 cube, Ciphtertext c, RK_user& rr) {
+	//	ECn Q;
+	//	forever
+	//	{
+	//		while (!Q.set(randn()));
+	//		Q *= cof;
+	//		if (!Q.iszero()) break;
+	//	}
+	//		//待定
+	//	rk = usk.K + Q;
+	//	Big k3 = rand(q);
+	//	ZZn2 X;
+	//	ecap(c.c3, Q, q, cube, X);
+	//	rr.u = (k3 * pkisi_mpk.g1) + (((-k3) + upk) * pkisi_mpk.g);
+	//	rr.v = pow(params_ts.e_g_g, k3);
+	//	rr.w = X * pow(params_ts.e_g_h, -k3);
+	//}
 
 	void RTtrd(params_ts params_ts, Big ts_msk, Big QtTimeNow, St& st, Big q, Big p) {
 		st.rt = rand(q);
+		//st.rt = 11111111;
 		Big y = ts_msk - QtTimeNow;
-		y = inverse(y, p);
+		Big z = inverse(y, p);
 		st.Kt = (params_ts.h + (st.rt * (-params_ts.g)));
 		st.Kt = y * st.Kt;
 		/*while (ts_msk == QtTimeNow) {
@@ -465,18 +455,18 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		//cout << "ts_msk= " << ts_msk << endl;
 		cout << "RTtrd complete" << endl;
 	}
-	void DeCT(RK_user rr, user_msk user_msk, Big q, ZZn2 cube, St st, ZZn2& X) {
+	/*void DeCT(RK_user rr, user_msk user_msk, Big q, ZZn2 cube, St st, ZZn2& X) {
 		ZZn2 Y;
 		ecap(rr.u, user_msk.K, q, cube, Y);
 		X = Y * pow(rr.v, user_msk.r) * rr.w;
-	}
+	}*/
 
-	void Dec2(St st, ZZn2 X, ReCiphtertext CT, Big q, ZZn2 cube, ZZn2& ming1) {
+	/*void Dec2(St st, ZZn2 X, ReCiphtertext CT, Big q, ZZn2 cube, ZZn2& ming1) {
 		ZZn2 Y;
 		ecap(CT.c1, st.Kt, q, cube, Y);
 		ming1 = Y * pow(CT.c2, st.rt) * CT.c3 * CT.c4 * CT.c5;
 		ming1 = ming1 / X;
-	}
+	}*/
 
 	void Dec(Ciphtertext CT, user_msk user_msk, Big q, ZZn2 cube, St st, ZZn2& PT_Alice) {
 		ZZn2 Y1;
@@ -520,11 +510,11 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		params_ts params_ts;
 		//TRS_MPK trs_mpk;
 		char Alice[100] = "Alice@email.com";//发送者
-		char Bob[100] = "Bob@@email.com";
+		/*char Bob[100] = "Bob@@email.com";
 		char Tom[100] = "Tom@qq.com";
-		char Andy[100] = "Andy@qq.com";
-		char TimeToBeDec[] = "20241212";
-		char TimeNow[] = "20241212";
+		char Andy[100] = "Andy@qq.com";*/
+		char TimeToBeDec[100] = "2024-12-12";
+		char TimeNow[100] = "2024-12-12";
 		Big QtTimeToBeDec, QtTimeNow;
 		Ciphtertext CT;  // 密文
 		ReCiphtertext RCT; // 代理重加密密文
@@ -537,11 +527,10 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		RK_user RK_bob, RK_tom, RK_andy;   //Rj
 		ECn RK;
 		ZZn2 PT;   // Plaintext to be encrypted
-		ZZn2 PT_Alice ,PT_Bob, PT_Tom, PT_Andy;
+		ZZn2 PT_Alice, PT_Bob, PT_Tom, PT_Andy;
 		St st;
 		ZZn2 X_Bob, X_Tom, X_Andy;    // 解密所用中间参数 X
 		miracl* mip = &precision;                    //miracl* mip:精度
-		mip->ERCON = TRUE; // 启用错误控制
 
 		cout << "由于有些基本操作耗时不足1毫秒，所有基本操作都将重复执行" << renum << "次 " << endl;
 		cout << "Enter 9 digit random number seed  = ";
@@ -618,54 +607,60 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 
 		// 时间服务器私钥生成，
 		ts_msk = rand(q);
-		params_ts.ts_pub = ts_msk * params_ts.g;
+		cout << "ts_msk =" << ts_msk << endl;
+		params_ts.g1 = ts_msk * params_ts.g;
+		cout << "params_ts.g1 = " << params_ts.g1 << endl;
 
 		/*----------------------------------------产生明文----------------------------------------------------*/
 		PT =randn2();
-		cout << "加密明文为：" << PT << endl;
+		cout << "加密明文为PT = " << PT << endl;
 
 		pkisi_msk = rand(q);
 		//产生g,h
 		forever
 		{
-			while (!params_pkisi.MPK.g.set(randn()));
-				params_pkisi.MPK.g *= cof;
-			if (!params_pkisi.MPK.g.iszero()) break;
+			while (!params_pkisi.g.set(randn()));
+				params_pkisi.g *= cof;
+			if (!params_pkisi.g.iszero()) break;
 		}
 			//产生椭圆曲线上生成元P1(g1)
-		params_pkisi.MPK.g1 = pkisi_msk * params_pkisi.MPK.g;
+		params_pkisi.g1 = pkisi_msk * params_pkisi.g;
+		cout << "params_pkisi.MPK.g1 = " << params_pkisi.g1 << endl;
 
 		forever
 		{
-			while (!params_pkisi.MPK.h.set(randn()));
-				params_pkisi.MPK.h *= cof;
-			if (!params_pkisi.MPK.h.iszero()) break;
+			while (!params_pkisi.h.set(randn()));
+				params_pkisi.h *= cof;
+			if (!params_pkisi.h.iszero()) break;
 		}
 		//产生params_pkisi椭圆曲线上双线性映射 e(g,g) 和 e(g,h)
-		ecap(params_pkisi.MPK.g, params_pkisi.MPK.g, q, cube, params_pkisi.e_g_g);
-		if (ecap(params_pkisi.MPK.g, params_pkisi.MPK.g, q, cube, params_pkisi.e_g_g)) {
+		ecap(params_pkisi.g, params_pkisi.g, q, cube, params_pkisi.e_g_g);
+		if (ecap(params_pkisi.g, params_pkisi.g, q, cube, params_pkisi.e_g_g)) {
 			cout << "params_pkisi ecap:e_g_g success" << endl;
 		}
 		else {
 			cout << "params_pkisi ecap:e_g_g error" << endl;
 		}
-		ecap(params_pkisi.MPK.g, params_pkisi.MPK.h, q, cube, params_pkisi.e_g_h);
-		if (ecap(params_pkisi.MPK.g, params_pkisi.MPK.h, q, cube, params_pkisi.e_g_h)) {
+		ecap(params_pkisi.g, params_pkisi.h, q, cube, params_pkisi.e_g_h);
+		if (ecap(params_pkisi.g, params_pkisi.h, q, cube, params_pkisi.e_g_h)) {
 			cout << "params_pkisi ecap:e_g_h success" << endl;
 		}
 		else {
 			cout << "params_pkisi ecap:e_g_h error" << endl;
 		}
 		/*------------------------ KeyGen pkisi .该阶段包括下述操作-----------------------------------------*/
-		upk_Alice = H1(Alice);//用户公钥
-		cout << "upk_Alice= " << upk_Alice << endl;
-		upk_Bob = H1(Bob);
+		//upk_Alice = H1(Alice);//用户公钥
+		//upk_Bob = H1(Bob);
+		//upk_Tom = H1(Tom);
+		//upk_Andy = H1(Andy);
+		//QtTimeToBeDec = H1(TimeToBeDec);
+		//QtTimeNow = H1(TimeNow);
+		upk_Alice = 1111111111;
+		/*upk_Bob = H1(Bob);
 		upk_Tom = H1(Tom);
-		upk_Andy = H1(Andy);
-		QtTimeToBeDec = H1(TimeToBeDec);
-		cout << "QtTimeToBeDec= " << QtTimeToBeDec << endl;
-		QtTimeNow = H1(TimeNow);
-		cout << "QtTimeNow= " << QtTimeNow << endl;
+		upk_Andy = H1(Andy);*/
+		QtTimeToBeDec = 1111111111;
+		QtTimeNow = 1111111111;
 		/*while (pkisi_msk == upk_Alice || pkisi_msk == upk_Bob || pkisi_msk == upk_Tom || pkisi_msk == upk_Andy) {
 			pkisi_msk = rand(q);
 			params_pkisi.MPK.g1 = pkisi_msk * params_pkisi.MPK.g;
@@ -679,6 +674,8 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 		KeyGen(pkisi_mpk.h, pkisi_mpk.g, pkisi_msk.alpha, user_msk_Andy.r, q, user_msk_Andy.K, upk_Andy);*/
 		/*-------------------------------加密-------------------------------------------*/
 		RTtrd(params_ts, ts_msk, QtTimeNow, st, q, p);
+		cout << endl << "Before Enc: params_ts.g1 = " << params_ts.g1 << endl;
+		cout << endl << "params_pkisi.MPK.g1 = " << params_pkisi.g1 << endl;
 		Enc(params_ts, params_pkisi, user_msk_Alice, upk_Alice, QtTimeToBeDec, PT, q, p, CT);
 		Dec(CT, user_msk_Alice, q, cube, st, PT_Alice);
 		//cout << params_pkisi.MPK.g << endl;

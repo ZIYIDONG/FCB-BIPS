@@ -11,16 +11,16 @@
       "RelativeMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|solutionrelative:ecn.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|C:\\Users\\ZiyiDong\\Desktop\\Repositories\\FCB-BIPS\\src\\CPA\\ebrick.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|solutionrelative:ebrick.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|C:\\Users\\ZiyiDong\\Desktop\\Repositories\\FCB-BIPS\\src\\CPA\\ecn.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|solutionrelative:ecn.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|C:\\Users\\ZiyiDong\\Desktop\\Repositories\\FCB-BIPS\\src\\CPA\\zzn2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|solutionrelative:zzn2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|C:\\Users\\ZiyiDong\\Desktop\\Repositories\\FCB-BIPS\\src\\CPA\\ebrick.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|solutionrelative:ebrick.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +34,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "zzn2.cpp",
               "DocumentMoniker": "C:\\Users\\ZiyiDong\\Desktop\\Repositories\\FCB-BIPS\\src\\CPA\\zzn2.cpp",
               "RelativeDocumentMoniker": "zzn2.cpp",
@@ -46,7 +46,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ecn.cpp",
               "DocumentMoniker": "C:\\Users\\ZiyiDong\\Desktop\\Repositories\\FCB-BIPS\\src\\CPA\\ecn.cpp",
               "RelativeDocumentMoniker": "ecn.cpp",
@@ -58,7 +58,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "ebrick.h",
               "DocumentMoniker": "C:\\Users\\ZiyiDong\\Desktop\\Repositories\\FCB-BIPS\\src\\CPA\\ebrick.h",
               "RelativeDocumentMoniker": "ebrick.h",
@@ -76,10 +76,9 @@
               "RelativeDocumentMoniker": "ecn.h",
               "ToolTip": "C:\\Users\\ZiyiDong\\Desktop\\Repositories\\FCB-BIPS\\src\\CPA\\ecn.h",
               "RelativeToolTip": "ecn.h",
-              "ViewState": "AgIAADYAAAAAAAAAAAAtwEUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAAtwEUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-06T09:12:54.102Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-06T09:12:54.102Z"
             },
             {
               "$type": "Document",
@@ -89,7 +88,7 @@
               "RelativeDocumentMoniker": "pemain.cpp",
               "ToolTip": "C:\\Users\\ZiyiDong\\Desktop\\Repositories\\FCB-BIPS\\src\\CPA\\pemain.cpp",
               "RelativeToolTip": "pemain.cpp",
-              "ViewState": "AgIAAIgBAAAAAAAAAAAAAKIBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGwCAAAAAAAAAAAAAHwCAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-07-18T13:37:35.392Z",
               "EditorCaption": ""
