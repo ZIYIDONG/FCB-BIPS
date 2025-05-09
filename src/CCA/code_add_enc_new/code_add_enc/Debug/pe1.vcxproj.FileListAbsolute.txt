@@ -5,4 +5,9 @@ C:\Users\ZiyiDong\Desktop\codeadd\Debug\pe1.exe
 C:\Users\Ziyi_Dong\Desktop\codeadd\Debug\pe1.exe
 A:\信安项目\code_add_enc\Debug\pe1.exe
 E:\deskbook\代码实现\code_add_enc_new\code_add_enc\Debug\pe1.exe
+<<<<<<< HEAD
 E:\deskbook\code\FCB-BIPS\src\CCA\code_add_enc_new\code_add_enc\Debug\pe1.exe
+=======
+C:\Users\ZiyiDong\Desktop\Repositories\FCB-BIPS\src\CCA\code_add_enc_new\code_add_enc\Debug\pe1.exe
+E:\论文实验\FCB-BIPS\src\CCA\code_add_enc_new\code_add_enc\Debug\pe1.exe
+>>>>>>> 5451d5553ff230ab11f6985dd619a12d7445cedb

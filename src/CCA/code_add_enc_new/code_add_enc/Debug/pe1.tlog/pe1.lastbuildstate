@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 PlatformToolSet=v143:VCToolArchitecture=Native32Bit:VCToolsVersion=14.38.33130:TargetPlatformVersion=10.0.22621.0:
 Debug|Win32|E:\deskbook\code\FCB-BIPS\src\CCA\code_add_enc_new\code_add_enc\|
+=======
+PlatformToolSet=v143:VCToolArchitecture=Native32Bit:VCToolsVersion=14.42.34433:TargetPlatformVersion=10.0.22621.0:
+Debug|Win32|E:\论文实验\FCB-BIPS\src\CCA\code_add_enc_new\code_add_enc\|
+>>>>>>> 5451d5553ff230ab11f6985dd619a12d7445cedb
