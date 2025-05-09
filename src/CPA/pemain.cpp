@@ -718,10 +718,13 @@ void Enc(params_ts params_ts, params_pkisi params_pkisi, user_msk& user_msk, Big
 		/*-------------------------------DeCT----------------------------------------*/
 		DeCT(params_pkisi, RK_bob, user_msk_Bob,q,cube,st,X_Bob);
 		cout << "Bob DeCT complete" << endl;
+		cout << "X_Bob =" << X_Bob << endl;
 		DeCT(params_pkisi, RK_tom, user_msk_Tom, q, cube, st, X_Tom);
 		cout << "Tom DeCT complete" << endl;
+		cout << "X_Tom =" << X_Tom << endl;
 		DeCT(params_pkisi, RK_andy, user_msk_Andy, q, cube, st, X_Andy);
 		cout << "Andy DeCT complete" << endl;
+		cout << "X_Andy =" << X_Andy << endl;
 		/*----------------------------------Dec2----------------------------------------*/
 		Dec2(st, X_Bob,RCT,q,cube,PT_Bob);
 		cout << "Bob Dec2 complete" << endl;
