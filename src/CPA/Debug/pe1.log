@@ -6,9 +6,9 @@ E:\论文实验\FCB-BIPS\src\CPA\ecn.h(1,1): warning C4819: 该文件包含不�
 E:\论文实验\FCB-BIPS\src\CPA\zzn2.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   (编译源文件“pemain.cpp”)
   
-E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(499,19): warning C4101: “y2”: 未引用的局部变量
-E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(499,11): warning C4101: “y1”: 未引用的局部变量
-E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(499,7): warning C4101: “x1”: 未引用的局部变量
-E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(501,8): warning C4101: “pad”: 未引用的局部变量
-E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(499,15): warning C4101: “x2”: 未引用的局部变量
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(524,19): warning C4101: “y2”: 未引用的局部变量
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(524,11): warning C4101: “y1”: 未引用的局部变量
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(524,7): warning C4101: “x1”: 未引用的局部变量
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(526,8): warning C4101: “pad”: 未引用的局部变量
+E:\论文实验\FCB-BIPS\src\CPA\pemain.cpp(524,15): warning C4101: “x2”: 未引用的局部变量
   pe1.vcxproj -> E:\论文实验\FCB-BIPS\src\CPA\Debug\pe1.exe

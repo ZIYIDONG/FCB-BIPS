@@ -22,12 +22,8 @@
       "DocumentGroups": [
         {
           "DockedHeight": 1132,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -36,10 +32,14 @@
               "RelativeDocumentMoniker": "\u6E90.cpp",
               "ToolTip": "E:\\\u8BBA\u6587\u5B9E\u9A8C\\FCB-BIPS\\src\\CCA\\code_add_enc_new\\code_add_enc\\\u6E90.cpp",
               "RelativeToolTip": "\u6E90.cpp",
-              "ViewState": "AgIAANgCAAAAAAAAAAAAAN8CAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAALYDAAAAAAAAAAAewPcCAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-04-29T16:12:03.371Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
             },
             {
               "$type": "Document",
