@@ -579,8 +579,7 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
             cout << "user.usk.rid_j: " << u[i].usk.rid_j << endl;
 
             ECn tem;
-            tem = u[i].usk.rid_j * pkisi_g.g;
-            tem = -tem;
+            tem = u[i].usk.rid_j * (-pkisi_g.g);
             tem = tem + pkisi_g.h;
             Big tem1 = pkisi_g.msk - u[i].upk;
             tem1 = inverse(tem1, q);
@@ -630,17 +629,19 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
         Big h2 = H1(user.id);
         cout << "H1(user.id): " << h2 << endl;
 
-        ECn temp4 = h2 *( -pkisi_g.g);
-        temp4 = k2 * temp4;
+        ECn temp4 = k2 *( -pkisi_g.g);
+        temp4 = h2 * temp4;
         CT.c3 = temp3 + temp4;
         cout << "Encrypted c3: " << CT.c3 << endl;
 
         // ¼ÆËã c4 = e_g_g^(k2 * user.usk.rid_j)
-        CT.c4 = pow(e_g_g, k2 * user.usk.rid_j);
+        //CT.c4 = pow(e_g_g, k2 * user.usk.rid_j);
+        ZZn2 tem5=pow(e_g_g, k2);
+        CT.c4 = pow(tem5, user.usk.rid_j);
         cout << "Encrypted c4: " << CT.c4 << endl;
 
         // ¼ÆËã c5 = m * e_g_h^(-k1) * e_g_h^(-k2)
-        CT.c5 = m * pow(e_g_h, -k1) * pow(e_g_h, -k2);
+        CT.c5 = m * pow(inverse(e_g_h) ,k1) * pow(inverse(e_g_h), k2);
         cout << "Encrypted c5: " << CT.c5 << endl;
 
         // ¼ÆËã c6 = H1(vk) * g
@@ -705,7 +706,7 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
         cout << "user.u: " << user.u << endl;*/
         for (int i = 0; i < n; i++) {
             //receiver[i].X_ = user.X_;
-            receiver[i].X= user.X;
+            //receiver[i].X= user.X;
             receiver[i].RK = user.RK;
             Big hid = H1(receiver[i].id);
             ECn ten1 = k3 * pkisi_g.mpk.g1;
@@ -716,7 +717,7 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
             receiver[i].v = pow(e_g_g, k3);
             //cout << "user.v: " << user.v << endl;
 
-            receiver[i].w = receiver[i].X * pow(e_g_h, -k3);
+            receiver[i].w = user.X * pow(inverse(e_g_h), k3);
             //cout << "user.w: " << user.w << endl;
         }
     }
@@ -790,7 +791,7 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
         ECn RK1, RK2;
         ECn tem11 = r1 * ts_g.g;
         ECn tem22 = H1(vk)* ts_g.g;
-        RK1 = u.usk.kid_j + tem11+tem22;
+        RK1 = u.usk.kid_j + (tem11+tem22);
         RK2 = r1 * ts_g.g;
         ZZn2 tem1, tem2;
         ecap(C.c1, ST.KT, ts_g.p, cube, tem1);
