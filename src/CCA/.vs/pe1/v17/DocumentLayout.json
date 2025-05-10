@@ -1,0 +1,69 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ZiyiDong\\Desktop\\Repositories\\FCB-BIPS\\src\\CCA\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|C:\\Users\\ZiyiDong\\Desktop\\Repositories\\FCB-BIPS\\src\\CCA\\\u6E90.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|solutionrelative:\u6E90.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|C:\\Users\\ZiyiDong\\Desktop\\Repositories\\FCB-BIPS\\src\\CCA\\zzn2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|solutionrelative:zzn2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|C:\\Users\\ZiyiDong\\Desktop\\Repositories\\FCB-BIPS\\src\\CCA\\zzn2.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A3DAD612-51D4-41C6-96B8-3D8B80ABB87A}|pe1.vcxproj|solutionrelative:zzn2.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 1132,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "\u6E90.cpp",
+              "DocumentMoniker": "C:\\Users\\ZiyiDong\\Desktop\\Repositories\\FCB-BIPS\\src\\CCA\\\u6E90.cpp",
+              "RelativeDocumentMoniker": "\u6E90.cpp",
+              "ToolTip": "C:\\Users\\ZiyiDong\\Desktop\\Repositories\\FCB-BIPS\\src\\CCA\\\u6E90.cpp",
+              "RelativeToolTip": "\u6E90.cpp",
+              "ViewState": "AgIAALYDAAAAAAAAAAAewPcCAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-29T16:12:03.371Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "zzn2.h",
+              "DocumentMoniker": "C:\\Users\\ZiyiDong\\Desktop\\Repositories\\FCB-BIPS\\src\\CCA\\zzn2.h",
+              "RelativeDocumentMoniker": "zzn2.h",
+              "ToolTip": "C:\\Users\\ZiyiDong\\Desktop\\Repositories\\FCB-BIPS\\src\\CCA\\zzn2.h",
+              "RelativeToolTip": "zzn2.h",
+              "ViewState": "AgIAADAAAAAAAAAAAAAkwD8AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-08-28T19:23:50.545Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "zzn2.cpp",
+              "DocumentMoniker": "C:\\Users\\ZiyiDong\\Desktop\\Repositories\\FCB-BIPS\\src\\CCA\\zzn2.cpp",
+              "RelativeDocumentMoniker": "zzn2.cpp",
+              "ToolTip": "C:\\Users\\ZiyiDong\\Desktop\\Repositories\\FCB-BIPS\\src\\CCA\\zzn2.cpp",
+              "RelativeToolTip": "zzn2.cpp",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAuwFEAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-08-28T15:51:42.126Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
