@@ -2,11 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-<<<<<<< HEAD
       <FullPath>E:\deskbook\code\FCB-BIPS\src\CCA\code_add_enc_new\code_add_enc\Debug\pe1.exe</FullPath>
-=======
-      <FullPath>E:\论文实验\FCB-BIPS\src\CCA\code_add_enc_new\code_add_enc\Debug\pe1.exe</FullPath>
->>>>>>> 5451d5553ff230ab11f6985dd619a12d7445cedb
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

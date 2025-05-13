@@ -91,7 +91,7 @@ Miracl precision(16, 0);  // increase if PBITS increases. (32,0) for 1024 bit p
 /*-------------------------------------------------------------------结构体声明-------------------------------------------------------------*/
 //时间服务器
 typedef struct ts_g {
-    Big p;
+    Big s;
     ECn g, h;
     ZZn2 e_g1_g2;
 } ts_g;
@@ -101,7 +101,7 @@ typedef struct mpk {
 } mpk;
 //PKISI
 typedef struct pkisi_g {
-    Big p, msk;
+    Big s, msk;
     mpk mpk;
     ECn g, h;
     ZZn2 e_g1_g2;
@@ -127,7 +127,7 @@ typedef struct user {
     char id[20] = " ";
     Big upk;
     usk_j usk;
-    ZZn2 v, w, X_,X;
+    ZZn2 v, w, X_, X;
     ECn u, RK;
 }user;
 //时间陷阱
@@ -572,26 +572,26 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
     }
 
 
-    void KeyGen(pkisi_g& pkisi_g, user* u, int n, Big q)
+    void KeyGen(pkisi_g& pkisi_g, user* users, int n, Big q)
     {
         for (int i = 0; i < n; i++) {
-            u[i].usk.rid_j = rand(pkisi_g.p);
-            cout << "user.usk.rid_j: " << u[i].usk.rid_j << endl;
+            users[i].usk.rid_j = rand(pkisi_g.s);
+            cout << "user.usk.rid_j: " << users[i].usk.rid_j << endl;
 
             ECn tem;
-            tem = u[i].usk.rid_j * (-pkisi_g.g);
+            tem = users[i].usk.rid_j * (-pkisi_g.g);
             tem = tem + pkisi_g.h;
-            Big tem1 = pkisi_g.msk - u[i].upk;
+            Big tem1 = pkisi_g.msk - users[i].upk;
             tem1 = inverse(tem1, q);
-            u[i].usk.kid_j = tem1 * tem;
-            cout << "user.usk.kid_j: " << u[i].usk.kid_j << endl;
+            users[i].usk.kid_j = tem1 * tem;
+            cout << "user.usk.kid_j: " << users[i].usk.kid_j << endl;
 
-            if (pkisi_g.msk == u[i].upk)
+            if (pkisi_g.msk == users[i].upk)
             {
-                pkisi_g.msk = rand(pkisi_g.p);
+                pkisi_g.msk = rand(pkisi_g.s);
                 pkisi_g.mpk.g1 = pkisi_g.msk * pkisi_g.mpk.g;
                 i = n;
-                KeyGen(pkisi_g, u, n, q);
+                KeyGen(pkisi_g, users, n, q);
             }
         }
     }
@@ -612,9 +612,9 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
         cout << "H1(T): " << h1 << endl;
 
         ECn temp2 = -pkisi_g.g;
-        temp2=k1*temp2;
-        temp2=h1*temp2;
-        
+        temp2 = k1 * temp2;
+        temp2 = h1 * temp2;
+
         CT.c1 = temp1 + temp2;
         cout << "Encrypted c1: " << CT.c1 << endl;
 
@@ -629,19 +629,19 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
         Big h2 = H1(user.id);
         cout << "H1(user.id): " << h2 << endl;
 
-        ECn temp4 = k2 *( -pkisi_g.g);
+        ECn temp4 = k2 * (-pkisi_g.g);
         temp4 = h2 * temp4;
         CT.c3 = temp3 + temp4;
         cout << "Encrypted c3: " << CT.c3 << endl;
 
         // 计算 c4 = e_g_g^(k2 * user.usk.rid_j)
         //CT.c4 = pow(e_g_g, k2 * user.usk.rid_j);
-        ZZn2 tem5=pow(e_g_g, k2);
+        ZZn2 tem5 = pow(e_g_g, k2);
         CT.c4 = pow(tem5, user.usk.rid_j);
         cout << "Encrypted c4: " << CT.c4 << endl;
 
         // 计算 c5 = m * e_g_h^(-k1) * e_g_h^(-k2)
-        CT.c5 = m * pow(inverse(e_g_h) ,k1) * pow(inverse(e_g_h), k2);
+        CT.c5 = m * pow(inverse(e_g_h), k1) * pow(inverse(e_g_h), k2);
         cout << "Encrypted c5: " << CT.c5 << endl;
 
         // 计算 c6 = H1(vk) * g
@@ -663,7 +663,7 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
                 //else {
                 //    cout << "Failed to set Q. Retrying..." << endl;
                 //}
-     
+
             }
             Q *= cof;
             cout << "Q after multiplication with cof: " << Q << endl;
@@ -674,7 +674,7 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
             //else {
             //    cout << "Q is zero. Retrying..." << endl;
             //}
-    }
+        }
 
         Qrid = user.usk.rid_j * Q;
         cout << "Qrid: " << Qrid << endl;
@@ -726,9 +726,9 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
         Big r;
         r = rand(p);
         Big hvk = H1(vk);
-        ECn tem1 = r*pkisi_g.g;
-        ECn tem2 = hvk* pkisi_g.g;
-        ECn tem3=tem1 + tem2;
+        ECn tem1 = r * pkisi_g.g;
+        ECn tem2 = hvk * pkisi_g.g;
+        ECn tem3 = tem1 + tem2;
         ECn RK_1 = user.RK + tem3;
         RCT.RK_2 = r * pkisi_g.g;
         ecap(CT.c3, RK_1, p, cube, CT.c3_);
@@ -758,103 +758,103 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 
     void Dec1(ts_g ts_g, pkisi_g pkisi_g, user& u, ZZn2& cube) {
         ZZn2 tem;
-        ecap(u.u, u.usk.kid_j, ts_g.p, cube, tem);
+        ecap(u.u, u.usk.kid_j, ts_g.s, cube, tem);
         tem *= pow(u.v, u.usk.rid_j);
         u.X = tem * u.w;
     }
-    void Dec2(ts_g ts_g, pkisi_g pkisi_g, ST ST, user u, user s,char T[], Ciphtertext& C, ZZn2 cube, ECn RK_2) {
+    void Dec2(ts_g ts_g, pkisi_g pkisi_g, ST ST, user u, user s, char T[], Ciphtertext& C, ZZn2 cube, ECn RK_2) {
         ZZn2 tem2, tem3;
         ECn tem4;
-        ecap(C.c3, u.RK, ts_g.p, cube, tem2);
-        tem4 =  C.c6+RK_2 ;
-        ecap(C.c3, tem4, ts_g.p, cube, tem3);
+        ecap(C.c3, u.RK, ts_g.s, cube, tem2);
+        tem4 = C.c6 + RK_2;
+        ecap(C.c3, tem4, ts_g.s, cube, tem3);
         tem2 *= tem3;
         if (C.c3_ != tem2) {
             cout << "——_____——" << endl;
             return;
         }
         ZZn2 tem, tem1;
-        ecap(C.c1, ST.KT, ts_g.p, cube, tem);
+        ecap(C.c1, ST.KT, ts_g.s, cube, tem);
         tem *= pow(C.c2, ST.rT);
         tem *= C.c3_;
         tem *= C.c4;
         tem *= C.c5;
         ECn tem5 = C.c6 + RK_2;
-        ecap(C.c3, tem5, ts_g.p, cube, tem1);
-        tem1 = s.X*tem1;
-        cout<<"解密者的X为："<<u.X<<endl;
+        ecap(C.c3, tem5, ts_g.s, cube, tem1);
+        tem1 = s.X * tem1;
+        cout << "解密者的X为：" << u.X << endl;
         cout << u.id << "(接收者)解密成功" << endl;
-        cout << tem/ tem1 << endl;
+        cout << tem / tem1 << endl;
     }
     void Dec(ts_g& ts_g, pkisi_g& pkisi_g, ST& ST, user& u, char T[], Ciphtertext& C, ZZn2& cube, char vk[]) {
-        Big r1 = rand(ts_g.p);
+        Big r1 = rand(ts_g.s);
         ECn RK1, RK2;
         ECn tem11 = r1 * ts_g.g;
-        ECn tem22 = H1(vk)* ts_g.g;
-        RK1 = u.usk.kid_j + (tem11+tem22);
+        ECn tem22 = H1(vk) * ts_g.g;
+        RK1 = u.usk.kid_j + (tem11 + tem22);
         RK2 = r1 * ts_g.g;
         ZZn2 tem1, tem2;
-        ecap(C.c1, ST.KT, ts_g.p, cube, tem1);
-        ecap(C.c3, RK1, ts_g.p, cube, tem2);
+        ecap(C.c1, ST.KT, ts_g.s, cube, tem1);
+        ecap(C.c3, RK1, ts_g.s, cube, tem2);
         tem1 *= pow(C.c2, ST.rT);
         tem1 *= tem2;
         tem1 *= C.c4;
         tem1 *= C.c5;
         RK2 += C.c6;
-        ecap(C.c3, RK2, ts_g.p, cube, tem2);
-        cout<<"解密者的X为："<<u.X<<endl;
+        ecap(C.c3, RK2, ts_g.s, cube, tem2);
+        cout << "解密者的X为：" << u.X << endl;
         cout << u.id << "(发送者)解密成功" << endl;
         cout << tem1 / tem2 << endl;
     }
 
 
     int main() {
+        Big p, q, t, a, n, cof, a1, b1;
+        ZZn2 cube, e_g_g, e_g_h, m;
+        ts_g ts_g;
+        pkisi_g pkisi_g;
+        Ciphtertext CT;
+        ReCiphtertext RCT;
+        ST st;
+        ts ts;
+        char vk[100], sk[100], T[100];
         cout << "系统开始运行" << endl;
 
         // 初始化随机数生成器
         srand(static_cast<unsigned int>(time(nullptr)));
 
         /*------------------------参数定义--------------------------*/
-        char vk[100], sk[100], T[100];
         strcpy(vk, "cui");
         strcpy(T, "time123");
         strcpy(sk, "liu");
 
-        ReCiphtertext RCT;
-        Big p, q, t, a, n, cof;
-        ZZn2 cube, e_g_g, e_g_h;
-        ts_g ts_g;
-        pkisi_g pkisi_g;
-        ts ts;
-        Ciphtertext CT;
-        ST st;
 
         /*--------------------------------ini------------------------------------*/
-        cout<< "-----------------------------------------------------------------系统参数初始化-----------------------------------------------------------------" << endl;   
-// 生成素数阶 p
-        p = pow((Big)2, 159) + pow((Big)2, 17) + 1;
-        cout << "产生素数阶 p：" << endl;
-        cout << "p= " << p << endl;
+        cout << "-----------------------------------------------------------------系统参数初始化-----------------------------------------------------------------" << endl;
+        // 生成素数阶 q
+        q = pow((Big)2, 159) + pow((Big)2, 17) + 1;
+        cout << "产生素数阶 q：" << endl;
+        cout << "q= " << q << endl;
 
-        // 生成模数 q
-        t = (pow((Big)2, PBITS) - 1) / (2 * p);
-        a = (pow((Big)2, PBITS - 1) - 1) / (2 * p);
+        // 生成模数 p
+        t = (pow((Big)2, PBITS) - 1) / (2 * q);
+        a = (pow((Big)2, PBITS - 1) - 1) / (2 * q);
         forever{
             n = rand(t);
             if (n < a) continue;
-            q = 2 * n * p - 1;
-            if (q % 24 != 11) continue; // 必须是 2 mod 3，同时 3 mod 8
-            if (prime(q)) break;
+            p = 2 * n * q - 1;
+            if (p % 24 != 11) continue; // 必须是 2 mod 3，同时 3 mod 8
+            if (prime(p)) break;
         }
-        cout << "产生模数 q:" << endl;
-        cout << "q= " << q << endl;
+        cout << "产生模数 p:" << endl;
+        cout << "p= " << p << endl;
 
         cof = 2 * n; // 椭圆曲线余因子
 
-        ecurve(0, 1, q, MR_PROJECTIVE); // 初始化椭圆曲线
+        ecurve(0, 1, p, MR_PROJECTIVE); // 初始化椭圆曲线
         forever{
-            cube = pow(randn2(), (q + 1) / 3);
-            cube = pow(cube, q - 1);
+            cube = pow(randn2(), (p + 1) / 3);
+            cube = pow(cube, p - 1);
             if (!cube.isunity()) break;
         }
 
@@ -866,7 +866,7 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
         }
 
         // 初始化 ts_g 参数
-        ts_g.p = p;
+        ts_g.s = q;
         forever{
             while (!ts_g.g.set(randn())) {
                 cout << "Attempting to generate ts_g.g..." << endl;
@@ -888,16 +888,16 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
         cout << "ts_g 参数生成完毕" << endl;
 
         // 初始化 pkisi_g 参数
-        pkisi_g.p = ts_g.p;
+        pkisi_g.s = ts_g.s;
         pkisi_g.g = ts_g.g;
         pkisi_g.h = ts_g.h;
-        pkisi_g.msk = rand(pkisi_g.p);
+        pkisi_g.msk = rand(q);
         pkisi_g.mpk.g = pkisi_g.g;
         pkisi_g.mpk.g1 = pkisi_g.msk * pkisi_g.g;
         pkisi_g.mpk.h = pkisi_g.h;
 
         cout << "pkisig 参数生成完毕" << endl;
-        cout<<"-----------------------------------------------------------------用户初始化-----------------------------------------------------------------"<< endl;
+        cout << "-----------------------------------------------------------------用户初始化-----------------------------------------------------------------" << endl;
 
         // 用户初始化
         user Bob, Alice, Lihua;
@@ -922,37 +922,36 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
 
         cout << "-----------------------------------------------------------------时间服务器初始化-----------------------------------------------------------------" << endl;
         // 时间服务器初始化
-        ts.priv = rand(pkisi_g.p);
+        ts.priv = rand(q);
         ts.pub = ts.priv * pkisi_g.g;
 
-        
+
         cout << "时间服务器公钥私钥生成完毕" << endl;
         cout << "-----------------------------------------------------------------加密过程-----------------------------------------------------------------" << endl;
 
         // 加密过程
-        Big a1 = rand(p);
-        Big b1 = rand(p);
-        ZZn2 m;
+        a1 = rand(q);
+        b1 = rand(q);
         m.set(a1, b1);
         cout << "m:" << m << endl;
 
         // 生成 e_g_g 和 e_g_h
-        if (!ecap(pkisi_g.g, pkisi_g.g, p, cube, e_g_g)) {
+        if (!ecap(pkisi_g.g, pkisi_g.g, q, cube, e_g_g)) {
             cerr << "Failed to compute e_g_g." << endl;
             exit(1);
         }
-        if (!ecap(pkisi_g.g, pkisi_g.h, p, cube, e_g_h)) {
+        if (!ecap(pkisi_g.g, pkisi_g.h, q, cube, e_g_h)) {
             cerr << "Failed to compute e_g_h." << endl;
             exit(1);
         }
 
-        Enc(p, ts_g, pkisi_g, ts.pub, T, Bob.upk, Bob, e_g_g, e_g_h, m, CT, vk);
+        Enc(q, ts_g, pkisi_g, ts.pub, T, Bob.upk, Bob, e_g_g, e_g_h, m, CT, vk);
 
         cout << "加密成功" << endl;
 
         // RK 生成
         user reveiver[2] = { Alice,Lihua };
-        RKGen(p, q, cube, pkisi_g, reveiver, Bob, 2, e_g_g, e_g_h, CT, cof);
+        RKGen(q, p, cube, pkisi_g, reveiver, Bob, 2, e_g_g, e_g_h, CT, cof);
         Alice = reveiver[0];
         Lihua = reveiver[1];
 
@@ -960,23 +959,23 @@ void g(ECn& A, ECn& B, ZZn2& Qx, ZZn2& Qy, ZZn2& num)
         cout << "RK 生成成功" << endl;
 
         // 重加密过程
-        ReEnc(p, pkisi_g, Bob, CT, RCT, cube, vk);
+        ReEnc(q, pkisi_g, Bob, CT, RCT, cube, vk);
 
         cout << "重加密成功" << endl;
 
         // 时间戳功能
-        RtTrd(p, ts_g, ts, T, st, q);
+        RtTrd(q, ts_g, ts, T, st, p);
 
         cout << "时间戳成功" << endl;
 
-        cout<< "-----------------------------------------------------------------解密过程-----------------------------------------------------------------" << endl;
+        cout << "-----------------------------------------------------------------解密过程-----------------------------------------------------------------" << endl;
         // 解密过程
         Dec1(ts_g, pkisi_g, Alice, cube);
         Dec1(ts_g, pkisi_g, Lihua, cube);
 
-        Dec2(ts_g, pkisi_g, st, Alice,Bob, T, CT, cube, RCT.RK_2);
+        Dec2(ts_g, pkisi_g, st, Alice, Bob, T, CT, cube, RCT.RK_2);
 
-        Dec2(ts_g, pkisi_g, st, Lihua, Bob,T, CT, cube, RCT.RK_2);
+        Dec2(ts_g, pkisi_g, st, Lihua, Bob, T, CT, cube, RCT.RK_2);
 
         Dec(ts_g, pkisi_g, st, Bob, T, CT, cube, vk);
 
